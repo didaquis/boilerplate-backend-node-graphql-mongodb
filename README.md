@@ -15,5 +15,5 @@ This repository is made to work with: https://github.com/didaquis/boilerplate-fr
 * Execute script with `node .` or `npm start`
 
 ## For development:
-* For run app: `npm run dev`
-* For run linter: `npm run lint`
+* Run app: `npm run dev`
+* Run linter: `npm run lint`
