@@ -5,7 +5,7 @@ This repo is a boilerplate of server made with Node.js + GraphQL + Apollo + Mong
 This repository is made to work with: https://github.com/didaquis/boilerplate-frontend-react-graphql-apollo
 
 ### Requirements:
-* MongoDB service running
+* MongoDB 4.0 or higher service running
 * Node.js 10 or higher
 * Configure the application:
   * Edit the configuration in file `_env`

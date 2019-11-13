@@ -1,12 +1,19 @@
 # Localhost Data:
 PORT=4000
 
-# Database connection:
+# Database format connection (chose between: "standard" or "DNSseedlist"):
+MONGO_FORMAT_CONNECTION=DNSseedlist
+
+
+# MongoDB: Standard Connection String Format
 MONGO_HOST=localhost
 MONGO_PORT=27017
 MONGO_DB=boilerplate_database
 MONGO_USER=
 MONGO_PASS=
+
+# MongoDB: DNS Seedlist Connection Format
+MONGO_DNS_SEEDLIST_CONNECTION=mongodb+srv://<user>:<password>@<uri-and-options>
 
 # JSONWEBTOKEN:
 SECRET=yoursecret

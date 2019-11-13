@@ -3,6 +3,8 @@
 require('dotenv').config();
 const cors = require('cors');
 
+const formatConnection = process.env.MONGO_FORMAT_CONNECTION || 'standard';
+const mongoDNSseedlist = process.env.MONGO_DNS_SEEDLIST_CONNECTION;
 const host = process.env.MONGO_HOST;
 const port = process.env.MONGO_PORT;
 const database = process.env.MONGO_DB;
@@ -10,10 +12,15 @@ const mongoUser = process.env.MONGO_USER;
 const mongoPass = process.env.MONGO_PASS;
 
 const mongoose = require('mongoose');
-if (mongoUser !== '' && mongoPass !== '') {
-	mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@${host}:${port}/${database}`, { useNewUrlParser: true });
+
+if (formatConnection === 'DNSseedlist' && mongoDNSseedlist !== '') {
+	mongoose.connect(mongoDNSseedlist, { useNewUrlParser: true });
 } else {
-	mongoose.connect(`mongodb://${host}:${port}/${database}`, { useNewUrlParser: true });
+	if (mongoUser !== '' && mongoPass !== '') {
+		mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@${host}:${port}/${database}`, { useNewUrlParser: true });
+	} else {
+		mongoose.connect(`mongodb://${host}:${port}/${database}`, { useNewUrlParser: true });
+	}
 }
 
 // mongoose.set('setFindAndModify', false); // Prevent DeprecationWarning: collection.findAndModify is deprecated
