@@ -1,0 +1,37 @@
+{
+  "name": "boilerplate-backend-node-graphql-mongodb",
+  "version": "0.1.01",
+  "description": "boilerplate-backend-node-graphql-mongodb",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "lint": "eslint --ext .js ."
+  },
+  "keywords": [
+    "boilerplate",
+    "GraphQL",
+    "Apollo",
+    "Node.js",
+    "MongoDB",
+    "server"
+  ],
+  "author": "Dídac García (https://didaquis.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.9.8",
+    "bcrypt": "^3.0.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.7.10"
+  }
+}

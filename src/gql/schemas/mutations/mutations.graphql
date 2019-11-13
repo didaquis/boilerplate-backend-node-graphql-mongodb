@@ -1,0 +1,38 @@
+type Mutation {
+	# clientes
+	""" Te permite crear nuevos clientes """
+	crearCliente(input: ClienteInput): Cliente
+
+	""" Te permite actualizar los datos de un cliente """
+	actualizarCliente(input: ClienteInput): Cliente
+
+	""" Te permite eliminar un cliente """
+	eliminarCliente(id: ID!): String
+
+
+	# productos
+	""" Te permite crear nuevos productos """
+	nuevoProducto(input: ProductoInput): Producto
+
+	""" Te permite actualizar los datos de un producto """
+	actualizarProducto(input: ProductoInput): Producto
+
+	""" Te permite eliminar un producto """
+	eliminarProducto(id: ID!): String
+
+
+	# pedidos
+	""" Te permite crear nuevos pedidos """
+	nuevoPedido(input: PedidoInput): Pedido
+
+	""" Te permite actualizar el estado de un pedido """
+	actualizarEstado(input: PedidoInput!): String
+
+
+	# usuarios
+	""" Te permite crear un nuevo usuario """
+	crearUsuario(usuario: String!, password: String!): String
+
+	""" Permite autenticar a un usuario """
+	autenticarUsuario(usuario: String!, password: String!): Token
+}

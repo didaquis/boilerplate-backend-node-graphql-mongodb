@@ -1,0 +1,12 @@
+""" Asigna la categoría del Cliente """
+enum TipoCliente {
+	BASICO
+	PREMIUM
+}
+
+""" Asigna el estado del Pedido """
+enum TipoEstadoPedido {
+	PENDIENTE
+	COMPLETADO
+	CANCELADO
+}

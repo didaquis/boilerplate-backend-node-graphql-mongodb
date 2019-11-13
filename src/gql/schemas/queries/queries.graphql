@@ -1,0 +1,37 @@
+type Query {
+	# clientes
+	""" Obtén los datos de todos los clientes, opcionalmente puedes limitar el número de resultados y la paginación """
+	getClientes(limite: Int, offset: Int): [Cliente]
+
+	""" Obtén los datos de un cliente (especificando su id) """
+	getCliente(id: ID!): Cliente
+
+	""" Obtén el número total de clientes registrados en la base de datos """
+	totalClientes: String
+
+
+	# productos
+	""" Obtén los datos de todos los productos, opcionalmente puedes limitar el número de resultados y la paginación """
+	obtenerProductos(limite: Int, offset: Int, hasStock: Boolean): [Producto]
+
+	""" Obtén los datos de un producto (especificando su id) """
+	obtenerProducto(id: ID!): Producto
+
+	""" Obtén el número total de productos registrados en la base de datos """
+	totalProductos: String
+
+
+	# pedidos
+	""" Obtén los datos de todos los pedidos filtrados por cliente """
+	obtenerPedidos(clienteId: String!): [Pedido]
+
+
+	# gráficas
+	""" Obtén el top 10 clientes ordenados por dinero que han gastado """
+	topClientes: [ClienteTotal]
+
+
+	# usuarios
+	""" Recupera los datos de un usuario """
+	obtenerUsuario: Usuario
+}

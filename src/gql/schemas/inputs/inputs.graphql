@@ -1,0 +1,36 @@
+""" Campos para definir un cliente """
+input ClienteInput {
+	id: ID
+	nombre: String!
+	apellido: String
+	empresa: String
+	email: String!
+	tipo: TipoCliente!
+	pedidos: [PedidoInput]
+}
+
+""" Campos para definir un producto """
+input ProductoInput {
+	id: ID
+	nombre: String!
+	precio: Int!
+	stock: Int!
+}
+
+""" Campos para definir un pedido """
+input PedidoInput {
+	id: ID
+	pedido: [PedidoProductoInput]
+	total: Int
+	fecha: String
+	cliente: ID!
+	estado: TipoEstadoPedido
+}
+
+""" Campos para definir un producto en un pedido """
+input PedidoProductoInput {
+	id: ID!
+	nombre: String!
+	cantidad: Int!
+	precio: Int!
+}
