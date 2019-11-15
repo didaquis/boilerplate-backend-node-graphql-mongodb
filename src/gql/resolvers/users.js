@@ -1,4 +1,4 @@
-const { Usuarios } = require('../../data/models/index');
+const { Users } = require('../../data/models/index');
 const { crearToken } = require('../../utils/utils');
 
 const bcrypt = require('bcrypt');
@@ -10,41 +10,41 @@ module.exports = {
 			if (!context.usuarioActual) {
 				return null;
 			}
-			const usuario = await Usuarios.findOne({ usuario: context.usuarioActual.usuario });
+			const usuario = await Users.findOne({ email: context.usuarioActual.usuario });
 			return usuario;
 		}
 	},
 	Mutation: {
-		registerUser: async (root, { usuario, password }) => {
+		registerUser: async (root, { email, password }) => {
 
-			const existeUsuario = await Usuarios.findOne({usuario});
+			const existeUsuario = await Users.findOne({email});
 
 			if (existeUsuario) {
 				throw new Error('Ese nombre de usuario no está disponible');
 			}
 
-			await new Usuarios({
-				usuario,
+			await new Users({
+				email,
 				password
 			}).save();
 
-			const nombreUsuario = await Usuarios.findOne({usuario});
+			const user = await Users.findOne({email});
 
 			const secreto = process.env.SECRET;
 			const tiempoExpiracion = process.env.DURATION;
 
 			return {
-				token: crearToken(nombreUsuario, secreto, tiempoExpiracion)
+				token: crearToken(user, secreto, tiempoExpiracion)
 			};
 		},
-		autenticarUsuario: async (root, { usuario, password }) => {
-			const nombreUsuario = await Usuarios.findOne({usuario});
+		authUser: async (root, { email, password }) => {
+			const user = await Users.findOne({email});
 
-			if (!nombreUsuario) {
+			if (!user) {
 				throw new Error('Usuario no encontrado');
 			}
 
-			const passwordCorrecto = await bcrypt.compare(password, nombreUsuario.password);
+			const passwordCorrecto = await bcrypt.compare(password, user.password);
 
 			if (!passwordCorrecto) {
 				throw new Error('Nombre y/o password incorrecto');
@@ -54,7 +54,7 @@ module.exports = {
 			const tiempoExpiracion = process.env.DURATION;
 
 			return {
-				token: crearToken(nombreUsuario, secreto, tiempoExpiracion)
+				token: crearToken(user, secreto, tiempoExpiracion)
 			};
 		}
 	}

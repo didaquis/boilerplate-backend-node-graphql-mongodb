@@ -3,20 +3,38 @@ const Schema = mongoose.Schema;
 
 const bcrypt = require('bcrypt');
 
-const UsuariosSchema = new Schema({
-	usuario: { 
+const UsersSchema = new Schema({
+	email: {
 		type: String,
 		required: true,
-		unique: true
+		unique: true,
+		trim: true,
+		lowercase: true
 	},
-	password: { 
+	password: {
 		type: String,
 		required: true
+	},
+	isAdmin: {
+		type: Boolean,
+		default: false
+	},
+	isActive: {
+		type: Boolean,
+		default: true
+	},
+	registrationDate: {
+		type: Date,
+		default: Date.now
+	},
+	lastLogin: {
+		type: Date,
+		default: Date.now
 	}
 });
 
 // Hash the password of user before save on database
-UsuariosSchema.pre('save', function (next) {
+UsersSchema.pre('save', function (next) {
 	if (!this.isModified('password')) {
 		return next();
 	}
@@ -34,4 +52,4 @@ UsuariosSchema.pre('save', function (next) {
 	});
 });
 
-module.exports = UsuariosSchema;
+module.exports = UsersSchema;

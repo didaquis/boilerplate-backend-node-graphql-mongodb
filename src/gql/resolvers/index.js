@@ -1,7 +1,7 @@
 const { merge } = require('lodash');
 
-const usuarios = require('./usuarios');
+const users = require('./users');
 
 module.exports = merge(
-	usuarios
+	users
 );

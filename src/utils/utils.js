@@ -4,13 +4,15 @@ const jwt = require('jsonwebtoken');
 
 /**
  * Create a new JsonWebToken
- * @param {Object} 		usuario 			- Payload
+ * @param {Object} 		user 				- Payload
  * @param {String} 		secreto 			- Secret or private key
  * @param {String} 		[tiempoExpiracion] 	- Time of token expiration. Default value '2h'
  * @returns	{String}						- Json Web Token
  */
-const crearToken = ({ usuario }, secreto, tiempoExpiracion = '2h') => {
-	return jwt.sign({ usuario }, secreto, { expiresIn: tiempoExpiracion });
+const crearToken = ({ user }, secreto, tiempoExpiracion = '2h') => {
+	// console.log({user}) // didac To DO
+	// console.log(user) // didac To DO
+	return jwt.sign({ user }, secreto, { expiresIn: tiempoExpiracion });
 };
 
 /**

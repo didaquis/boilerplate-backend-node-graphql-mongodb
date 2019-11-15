@@ -4,6 +4,8 @@ type Token {
 }
 
 """ Usuario """
-type Usuario {
-	usuario: String
+type User {
+	email: String
+	isAdmin: Boolean
+	isActive: Boolean
 }
