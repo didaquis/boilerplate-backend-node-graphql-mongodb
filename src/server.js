@@ -55,6 +55,11 @@ const initApplication = () => {
 	app.use('', routesManager);
 
 	const server = new ApolloServer({ typeDefs, resolvers, context: async ({ req }) => {
+		// didac: To DO!
+		// console.log(req.headers)
+		// console.log(req.body)
+		// console.log(req.query)
+		// console.log('**************************')
 		const token = req.headers['authorization'];
 		if (token !== 'null') { /* Check 'null' as a string! */
 			try {
@@ -63,7 +68,7 @@ const initApplication = () => {
 
 				return { usuarioActual };
 			} catch (error) {
-				console.error(error); // eslint-disable-line no-console
+				//console.error(error); // eslint-disable-line no-console
 			}
 		}
 	}});

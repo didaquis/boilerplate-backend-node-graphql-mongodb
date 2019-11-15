@@ -15,7 +15,7 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		crearUsuario: async (root, { usuario, password }) => {
+		registerUser: async (root, { usuario, password }) => {
 
 			const existeUsuario = await Usuarios.findOne({usuario});
 
@@ -28,7 +28,14 @@ module.exports = {
 				password
 			}).save();
 
-			return 'El usuario se ha creado correctamente';
+			const nombreUsuario = await Usuarios.findOne({usuario});
+
+			const secreto = process.env.SECRET;
+			const tiempoExpiracion = process.env.DURATION;
+
+			return {
+				token: crearToken(nombreUsuario, secreto, tiempoExpiracion)
+			};
 		},
 		autenticarUsuario: async (root, { usuario, password }) => {
 			const nombreUsuario = await Usuarios.findOne({usuario});
