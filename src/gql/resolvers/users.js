@@ -1,8 +1,8 @@
 const { Users } = require('../../data/models/index');
 const { crearToken } = require('../../utils/utils');
+const { securityVariablesConfig } = require('../../config/appConfig');
 
 const bcrypt = require('bcrypt');
-require('dotenv').config();
 
 module.exports = {
 	Query: {
@@ -30,11 +30,8 @@ module.exports = {
 
 			const user = await Users.findOne({email});
 
-			const secreto = process.env.SECRET;
-			const tiempoExpiracion = process.env.DURATION;
-
 			return {
-				token: crearToken(user, secreto, tiempoExpiracion)
+				token: crearToken(user, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		},
 		authUser: async (root, { email, password }) => {
@@ -52,11 +49,8 @@ module.exports = {
 
 			await Users.findOneAndUpdate({email}, { lastLogin: new Date().toISOString() }, { new: true });
 
-			const secreto = process.env.SECRET;
-			const tiempoExpiracion = process.env.DURATION;
-
 			return {
-				token: crearToken(user, secreto, tiempoExpiracion)
+				token: crearToken(user, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		}
 	}

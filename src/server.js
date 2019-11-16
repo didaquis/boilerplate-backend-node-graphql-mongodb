@@ -1,26 +1,17 @@
 'use strict';
 
-require('dotenv').config();
 const cors = require('cors');
-
-const formatConnection = process.env.MONGO_FORMAT_CONNECTION || 'standard';
-const mongoDNSseedlist = process.env.MONGO_DNS_SEEDLIST_CONNECTION;
-const host = process.env.MONGO_HOST;
-const port = process.env.MONGO_PORT;
-const database = process.env.MONGO_DB;
-const mongoUser = process.env.MONGO_USER;
-const mongoPass = process.env.MONGO_PASS;
-const enviroment = (process.env.ENVIROMENT === 'development') ? process.env.ENVIROMENT : 'production';
-
 const mongoose = require('mongoose');
 
-if (formatConnection === 'DNSseedlist' && mongoDNSseedlist !== '') {
-	mongoose.connect(mongoDNSseedlist, { useNewUrlParser: true });
+const { enviromentVariablesConfig } = require('./config/appConfig');
+
+if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
+	mongoose.connect(enviromentVariablesConfig.mongoDNSseedlist, { useNewUrlParser: true });
 } else {
-	if (mongoUser !== '' && mongoPass !== '') {
-		mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@${host}:${port}/${database}`, { useNewUrlParser: true });
+	if (enviromentVariablesConfig.mongoUser !== '' && enviromentVariablesConfig.mongoPass !== '') {
+		mongoose.connect(`mongodb://${enviromentVariablesConfig.mongoUser}:${enviromentVariablesConfig.mongoPass}@${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, { useNewUrlParser: true });
 	} else {
-		mongoose.connect(`mongodb://${host}:${port}/${database}`, { useNewUrlParser: true });
+		mongoose.connect(`mongodb://${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, { useNewUrlParser: true });
 	}
 }
 
@@ -32,7 +23,11 @@ db.on('error', (err) => {
 });
 
 db.once('open', () => {
-	console.log(`\nConnected with mongodb at "${host}" in port "${port}" using database "${database}"`); // eslint-disable-line no-console
+	if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
+		console.log(`\nConnected with mongodb at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`); // eslint-disable-line no-console
+	} else {
+		console.log(`\nConnected with mongodb at "${enviromentVariablesConfig.host}" in port "${enviromentVariablesConfig.port}" using database "${enviromentVariablesConfig.database}"`); // eslint-disable-line no-console
+	}
 
 	initApplication();
 });
@@ -73,8 +68,8 @@ const initApplication = () => {
 			}
 		}
 	},
-	introspection: (enviroment === 'production') ? false : true, // Set to "true" only in development mode
-	playground: (enviroment === 'production') ? false : true // Set to "true" only in development mode
+	introspection: (enviromentVariablesConfig.enviroment === 'production') ? false : true, // Set to "true" only in development mode
+	playground: (enviromentVariablesConfig.enviroment === 'production') ? false : true // Set to "true" only in development mode
 	});
 
 	server.applyMiddleware({app});
@@ -87,7 +82,7 @@ const initApplication = () => {
 	const port = process.env.PORT || portByDefault;
 	app.listen(port, () => {
 		getListOfIPV4Address().forEach(ip => {
-			console.log(`Application running on: http://${ip}:${port}${server.graphqlPath}`); // eslint-disable-line no-console
+			console.log(`Application running on: http://${ip}:${enviromentVariablesConfig.port}${server.graphqlPath}`); // eslint-disable-line no-console
 		});
 	});
 
