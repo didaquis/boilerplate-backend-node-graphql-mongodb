@@ -4,7 +4,7 @@ const { validateAuthToken } = require('./jwt');
 
 const setContext = async ({ req }) => {
 	const token = req.headers['authorization'];
-	if (token !== 'null') { /* Check 'null' as a string! */
+	if (token) {
 		try {
 			const user = await validateAuthToken(token);
 			return { user }; // Add to Apollo Server context the user who is doing the request if auth token is provided and it's a valid token

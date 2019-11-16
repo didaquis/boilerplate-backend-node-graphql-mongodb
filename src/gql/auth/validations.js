@@ -24,7 +24,7 @@ const authValidations = {
 	 * @return {Boolean}
 	 */
 	isAdmin: (context) => {
-		return (!context.user.isAdmin) ? false : true;
+		return (!context.user || !context.user.isAdmin) ? false : true;
 	}
 };
 
