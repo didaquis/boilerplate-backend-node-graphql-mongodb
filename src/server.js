@@ -3,7 +3,7 @@
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const { enviromentVariablesConfig, securityVariablesConfig } = require('./config/appConfig');
+const { enviromentVariablesConfig } = require('./config/appConfig');
 const { setContext } = require('./gql/auth/context');
 
 if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {

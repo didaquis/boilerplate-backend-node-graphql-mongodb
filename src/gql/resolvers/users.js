@@ -1,5 +1,6 @@
 const { Users } = require('../../data/models/index');
-const { crearToken } = require('../../utils/utils');
+const { createAuthToken } = require('../auth/jwt');
+const { authValidations } = require('../auth/validations');
 const { securityVariablesConfig } = require('../../config/appConfig');
 
 const bcrypt = require('bcrypt');
@@ -7,15 +8,16 @@ const bcrypt = require('bcrypt');
 module.exports = {
 	Query: {
 		listAllUsers:  async (root, args, context) => {
-			if (!context.user) {
+			if (!authValidations.isLogged(context)) {
 				//throw new Error('You must be logged in to perform this action');
 				return null;
 			}
 
-			if (!context.user.isAdmin) {
+			if (!authValidations.isAdmin(context)) {
 				//throw new Error('You must be an administrator to perform this action');
 				return null;
 			}
+
 			const users = await Users.find({});
 			return users;
 		}
@@ -34,7 +36,7 @@ module.exports = {
 			const user = await Users.findOne({email});
 
 			return {
-				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
+				token: createAuthToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		},
 		authUser: async (root, { email, password }) => {
@@ -53,7 +55,7 @@ module.exports = {
 			await Users.findOneAndUpdate({email}, { lastLogin: new Date().toISOString() }, { new: true });
 
 			return {
-				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
+				token: createAuthToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		}
 	}

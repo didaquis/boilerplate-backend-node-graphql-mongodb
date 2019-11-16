@@ -1,22 +1,5 @@
 'use strict';
 
-const jwt = require('jsonwebtoken');
-
-/**
- * Create a new JsonWebToken
- * @param {Object} 		userData 			- Payload object
- * @param {String} 		userData.email 		- Payload data: User email
- * @param {Boolean} 	userData.isAdmin 	- Payload data: If user is admin or not
- * @param {Boolean} 	userData.isActive 	- Payload data: If user is active or not
- * @param {String} 		userData.uuid 		- Payload data: An uuid token
- * @param {String} 		secreto 			- Secret or private key
- * @param {String} 		[tiempoExpiracion] 	- Time of token expiration. Default value '2h'
- * @returns	{String}						- Json Web Token
- */
-const crearToken = ({ email, isAdmin, isActive, uuid }, secreto, tiempoExpiracion = '2h') => {
-	return jwt.sign({ email, isAdmin, isActive, uuid }, secreto, { expiresIn: tiempoExpiracion });
-};
-
 /**
  * Get all IP address of the server
  * @param {Object|undefined} [{}] - An object.
@@ -50,7 +33,4 @@ const getListOfIPV4Address = ({ skipLocalhost = false } = {}) => {
 	return result;
 };
 
-module.exports = {
-	crearToken,
-	getListOfIPV4Address
-};
+module.exports = { getListOfIPV4Address };
