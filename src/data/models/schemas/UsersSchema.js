@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const bcrypt = require('bcrypt');
+const uuidv4 = require('uuid/v4');
 
 const UsersSchema = new Schema({
 	email: {
@@ -17,18 +18,28 @@ const UsersSchema = new Schema({
 	},
 	isAdmin: {
 		type: Boolean,
+		required: true,
 		default: false
 	},
 	isActive: {
 		type: Boolean,
+		required: true,
 		default: true
+	},
+	uuid: {
+		type: String,
+		required: true,
+		unique: true,
+		default: uuidv4()
 	},
 	registrationDate: {
 		type: Date,
+		required: true,
 		default: Date.now
 	},
 	lastLogin: {
 		type: Date,
+		required: true,
 		default: Date.now
 	}
 });

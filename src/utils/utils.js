@@ -8,18 +8,19 @@ const jwt = require('jsonwebtoken');
  * @param {String} 		userData.email 		- Payload data: User email
  * @param {Boolean} 	userData.isAdmin 	- Payload data: If user is admin or not
  * @param {Boolean} 	userData.isActive 	- Payload data: If user is active or not
+ * @param {String} 		userData.uuid 		- Payload data: An uuid token
  * @param {String} 		secreto 			- Secret or private key
  * @param {String} 		[tiempoExpiracion] 	- Time of token expiration. Default value '2h'
  * @returns	{String}						- Json Web Token
  */
-const crearToken = ({ email, isAdmin, isActive }, secreto, tiempoExpiracion = '2h') => {
-	return jwt.sign({ email, isAdmin, isActive }, secreto, { expiresIn: tiempoExpiracion });
+const crearToken = ({ email, isAdmin, isActive, uuid }, secreto, tiempoExpiracion = '2h') => {
+	return jwt.sign({ email, isAdmin, isActive, uuid }, secreto, { expiresIn: tiempoExpiracion });
 };
 
 /**
  * Get all IP address of the server
  * @param {Object|undefined} [{}] - An object.
- * @param {Boolean} [obj.skipLocalhost=false] Determines if the localhost address is returned in the result list
+ * @param {Boolean} [obj.skipLocalhost=false] - Determines if the localhost address is returned in the result list
  * @return {Array}                          Array of IPs
  */
 const getListOfIPV4Address = ({ skipLocalhost = false } = {}) => {

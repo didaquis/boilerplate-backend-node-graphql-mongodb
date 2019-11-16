@@ -23,22 +23,18 @@ module.exports = {
 	Mutation: {
 		registerUser: async (root, { email, password }) => {
 
-			const existeUsuario = await Users.findOne({email});
+			const isAnEmailAlreadyRegistered = await Users.findOne({email});
 
-			if (existeUsuario) {
+			if (isAnEmailAlreadyRegistered) {
 				throw new Error('Data provided is not valid');
 			}
 
-			await new Users({
-				email,
-				password
-			}).save();
+			await new Users({email, password}).save();
 
 			const user = await Users.findOne({email});
 
-			// didac TO DO... repensar si quiero mandar el _id del usuario, quizá mejor un UUID ??
 			return {
-				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
+				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		},
 		authUser: async (root, { email, password }) => {
@@ -56,9 +52,8 @@ module.exports = {
 
 			await Users.findOneAndUpdate({email}, { lastLogin: new Date().toISOString() }, { new: true });
 
-			// didac TO DO... repensar si quiero mandar el _id del usuario, quizá mejor un UUID ??
 			return {
-				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
+				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		}
 	}

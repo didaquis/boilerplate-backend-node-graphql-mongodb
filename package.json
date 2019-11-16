@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "0.1.08",
+  "version": "0.1.10",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "graphql-tools": "^4.0.6",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "mongoose": "^5.7.10"
+    "mongoose": "^5.7.10",
+    "uuid": "^3.3.3"
   }
 }
