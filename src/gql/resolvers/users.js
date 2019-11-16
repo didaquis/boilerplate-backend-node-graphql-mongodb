@@ -50,6 +50,8 @@ module.exports = {
 				throw new Error('Nombre y/o password incorrecto');
 			}
 
+			await Users.findOneAndUpdate({email}, { lastLogin: new Date().toISOString() }, { new: true });
+
 			const secreto = process.env.SECRET;
 			const tiempoExpiracion = process.env.DURATION;
 
