@@ -10,6 +10,7 @@ const port = process.env.MONGO_PORT;
 const database = process.env.MONGO_DB;
 const mongoUser = process.env.MONGO_USER;
 const mongoPass = process.env.MONGO_PASS;
+const enviroment = (process.env.ENVIROMENT === 'development') ? process.env.ENVIROMENT : 'production';
 
 const mongoose = require('mongoose');
 
@@ -71,7 +72,10 @@ const initApplication = () => {
 				//console.error(error); // eslint-disable-line no-console
 			}
 		}
-	}});
+	},
+	introspection: (enviroment === 'production') ? false : true, // Set to "true" only in development mode
+	playground: (enviroment === 'production') ? false : true // Set to "true" only in development mode
+	});
 
 	server.applyMiddleware({app});
 

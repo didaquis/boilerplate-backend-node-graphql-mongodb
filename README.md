@@ -11,9 +11,10 @@ This repository is made to work with: https://github.com/didaquis/boilerplate-fr
   * Edit the configuration in file `_env`
   * Rename the file `_env` to `.env`
 
-### Execute the application:
-* Execute script with `node .` or `npm start`
+### Execute the application (production):
+* Use the command: `npm install --production`
+* Then use: `npm run start`
 
-## For development:
+### For development:
 * Run app: `npm run dev`
 * Run linter: `npm run lint`

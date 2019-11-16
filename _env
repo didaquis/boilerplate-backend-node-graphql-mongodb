@@ -1,9 +1,11 @@
 # Localhost Data:
 PORT=4000
 
+# Enviroment (chose between: "production" or "development"):
+ENVIROMENT=development
+
 # Database format connection (chose between: "standard" or "DNSseedlist"):
 MONGO_FORMAT_CONNECTION=DNSseedlist
-
 
 # MongoDB: Standard Connection String Format
 MONGO_HOST=localhost
