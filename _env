@@ -1,5 +1,5 @@
 # Localhost Data:
-PORT=4000
+SERVER_PORT=4000
 
 # Enviroment (chose between: "production" or "development"):
 ENVIROMENT=development

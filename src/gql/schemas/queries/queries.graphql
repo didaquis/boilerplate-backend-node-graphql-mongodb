@@ -1,5 +1,5 @@
 type Query {
-	# usuarios
-	""" Recupera los datos de un usuario """
-	obtenerUsuario: User
+	# Users queries:
+	""" Get list of all users registered on database """
+	listAllUsers: [User]
 }

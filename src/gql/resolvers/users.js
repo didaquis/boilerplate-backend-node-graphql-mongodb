@@ -6,12 +6,18 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
 	Query: {
-		obtenerUsuario: async (root, args, context) => {
-			if (!context.usuarioActual) {
+		listAllUsers:  async (root, args, context) => {
+			if (!context.user) {
+				//throw new Error('You must be logged in to perform this action');
 				return null;
 			}
-			const usuario = await Users.findOne({ email: context.usuarioActual.usuario });
-			return usuario;
+
+			if (!context.user.isAdmin) {
+				//throw new Error('You must be an administrator to perform this action');
+				return null;
+			}
+			const users = await Users.find({});
+			return users;
 		}
 	},
 	Mutation: {
@@ -20,7 +26,7 @@ module.exports = {
 			const existeUsuario = await Users.findOne({email});
 
 			if (existeUsuario) {
-				throw new Error('Ese nombre de usuario no está disponible');
+				throw new Error('Data provided is not valid');
 			}
 
 			await new Users({
@@ -30,27 +36,29 @@ module.exports = {
 
 			const user = await Users.findOne({email});
 
+			// didac TO DO... repensar si quiero mandar el _id del usuario, quizá mejor un UUID ??
 			return {
-				token: crearToken(user, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
+				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		},
 		authUser: async (root, { email, password }) => {
 			const user = await Users.findOne({email});
 
 			if (!user) {
-				throw new Error('Usuario no encontrado');
+				throw new Error('User not found');
 			}
 
-			const passwordCorrecto = await bcrypt.compare(password, user.password);
+			const isCorrectPassword = await bcrypt.compare(password, user.password);
 
-			if (!passwordCorrecto) {
-				throw new Error('Nombre y/o password incorrecto');
+			if (!isCorrectPassword) {
+				throw new Error('Invalid credentials');
 			}
 
 			await Users.findOneAndUpdate({email}, { lastLogin: new Date().toISOString() }, { new: true });
 
+			// didac TO DO... repensar si quiero mandar el _id del usuario, quizá mejor un UUID ??
 			return {
-				token: crearToken(user, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
+				token: crearToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		}
 	}

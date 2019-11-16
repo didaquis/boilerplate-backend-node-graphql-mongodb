@@ -4,15 +4,16 @@ const jwt = require('jsonwebtoken');
 
 /**
  * Create a new JsonWebToken
- * @param {Object} 		user 				- Payload
+ * @param {Object} 		userData 			- Payload object
+ * @param {String} 		userData.email 		- Payload data: User email
+ * @param {Boolean} 	userData.isAdmin 	- Payload data: If user is admin or not
+ * @param {Boolean} 	userData.isActive 	- Payload data: If user is active or not
  * @param {String} 		secreto 			- Secret or private key
  * @param {String} 		[tiempoExpiracion] 	- Time of token expiration. Default value '2h'
  * @returns	{String}						- Json Web Token
  */
-const crearToken = ({ user }, secreto, tiempoExpiracion = '2h') => {
-	// console.log({user}) // didac To DO
-	// console.log(user) // didac To DO
-	return jwt.sign({ user }, secreto, { expiresIn: tiempoExpiracion });
+const crearToken = ({ email, isAdmin, isActive }, secreto, tiempoExpiracion = '2h') => {
+	return jwt.sign({ email, isAdmin, isActive }, secreto, { expiresIn: tiempoExpiracion });
 };
 
 /**

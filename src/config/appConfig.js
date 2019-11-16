@@ -13,6 +13,8 @@ require('dotenv').config();
  */
 
 
+const serverPortByDefault = 4000;
+
 /**
  * Enviroment variables configuration
  * @type {object}
@@ -25,7 +27,8 @@ const enviromentVariablesConfig = Object.freeze({
 	database: process.env.MONGO_DB || 'boilerplate_database',
 	mongoUser: process.env.MONGO_USER || '',
 	mongoPass: process.env.MONGO_PASS || '',
-	enviroment: (process.env.ENVIROMENT === 'development') ? process.env.ENVIROMENT : 'production'
+	enviroment: (process.env.ENVIROMENT === 'development') ? process.env.ENVIROMENT : 'production',
+	serverPort: process.env.SERVER_PORT || serverPortByDefault
 });
 
 /**

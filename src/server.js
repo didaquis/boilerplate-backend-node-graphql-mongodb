@@ -3,7 +3,8 @@
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const { enviromentVariablesConfig } = require('./config/appConfig');
+const { enviromentVariablesConfig, securityVariablesConfig } = require('./config/appConfig');
+const { setContext } = require('./gql/auth/context');
 
 if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
 	mongoose.connect(enviromentVariablesConfig.mongoDNSseedlist, { useNewUrlParser: true });
@@ -37,9 +38,6 @@ const initApplication = () => {
 	const app = express();
 	app.use(cors());
 
-	const jwt = require('jsonwebtoken');
-	const secreto = process.env.SECRET;
-
 	const { getListOfIPV4Address } = require('./utils/utils');
 
 	const { ApolloServer } = require('apollo-server-express');
@@ -50,26 +48,12 @@ const initApplication = () => {
 	const routesManager = require('./routes/routesManager');
 	app.use('', routesManager);
 
-	const server = new ApolloServer({ typeDefs, resolvers, context: async ({ req }) => {
-		// didac: To DO!
-		// console.log(req.headers)
-		// console.log(req.body)
-		// console.log(req.query)
-		// console.log('**************************')
-		const token = req.headers['authorization'];
-		if (token !== 'null') { /* Check 'null' as a string! */
-			try {
-				const usuarioActual = await jwt.verify(token, secreto);
-				req.usuarioActual = usuarioActual;
-
-				return { usuarioActual };
-			} catch (error) {
-				//console.error(error); // eslint-disable-line no-console
-			}
-		}
-	},
-	introspection: (enviromentVariablesConfig.enviroment === 'production') ? false : true, // Set to "true" only in development mode
-	playground: (enviromentVariablesConfig.enviroment === 'production') ? false : true // Set to "true" only in development mode
+	const server = new ApolloServer({ 
+		typeDefs,
+		resolvers,
+		context: setContext,
+		introspection: (enviromentVariablesConfig.enviroment === 'production') ? false : true, // Set to "true" only in development mode
+		playground: (enviromentVariablesConfig.enviroment === 'production') ? false : true // Set to "true" only in development mode
 	});
 
 	server.applyMiddleware({app});
@@ -78,15 +62,16 @@ const initApplication = () => {
 		res.status(404).send('404'); // eslint-disable-line no-magic-numbers
 	});
 
-	const portByDefault = 4000;
-	const port = process.env.PORT || portByDefault;
-	app.listen(port, () => {
+	app.listen(enviromentVariablesConfig.serverPort, () => {
 		getListOfIPV4Address().forEach(ip => {
-			console.log(`Application running on: http://${ip}:${enviromentVariablesConfig.port}${server.graphqlPath}`); // eslint-disable-line no-console
+			console.log(`\nApplication running on: http://${ip}:${enviromentVariablesConfig.serverPort}`); // eslint-disable-line no-console
+			if (enviromentVariablesConfig.enviroment !== 'production') {
+				console.log(`GraphQL Playground running on: http://${ip}:${enviromentVariablesConfig.serverPort}${server.graphqlPath}`); // eslint-disable-line no-console
+			}
 		});
 	});
 
-	// managing stop shutdown
+	// Managing application shutdown
 	process.on('SIGINT', () => {
 		console.log('\nStopping application...'); // eslint-disable-line no-console
 		process.exit();
