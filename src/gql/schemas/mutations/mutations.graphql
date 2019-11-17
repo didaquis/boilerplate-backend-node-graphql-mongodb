@@ -1,5 +1,5 @@
 type Mutation {
-	# Users mutations
+	# Auth mutations
 	""" It allows users to register """
 	registerUser(email: String!, password: String!): Token
 
