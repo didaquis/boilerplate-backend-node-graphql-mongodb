@@ -1,12 +1,15 @@
 const { Users } = require('../../data/models/index');
 const { createAuthToken } = require('../auth/jwt');
 const { authValidations } = require('../auth/validations');
-const { securityVariablesConfig } = require('../../config/appConfig');
+const { securityVariablesConfig, globalVariablesConfig } = require('../../config/appConfig');
 
 const bcrypt = require('bcrypt');
 
 module.exports = {
 	Query: {
+		/**
+		 * It allows to administrators users to list all users registered
+		 */
 		listAllUsers:  async (root, args, context) => {
 			if (!authValidations.isLogged(context)) {
 				//throw new Error('You must be logged in to perform this action');
@@ -22,8 +25,17 @@ module.exports = {
 			return users;
 		}
 	},
+	/**
+	 * It allows to users to register as long as the limit of allowed users has not been reached
+	 */
 	Mutation: {
 		registerUser: async (root, { email, password }) => {
+
+			const numberOfCurrentlyUsersRegistered = await Users.find().estimatedDocumentCount();
+
+			if (authValidations.isLimitOfUsersReached(numberOfCurrentlyUsersRegistered, globalVariablesConfig.limitOfUsersRegistered)) {
+				throw new Error('The maximum number of users allowed has been reached. You must contact the administrator of the service in order to register');
+			}
 
 			const isAnEmailAlreadyRegistered = await Users.findOne({email});
 

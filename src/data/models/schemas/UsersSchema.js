@@ -7,7 +7,7 @@ const uuidv4 = require('uuid/v4');
 /**
  * Users schema
  * @constructor Users model constructor
- * @classdesc User have interesting properties. Some of the are isAdmin (false by default), isActive (true by default. Created to remove login permission to already registered user), uuid (random and unike token. Created to provided a unique value for every user different from _id native MongoDB value)
+ * @classdesc User have interesting properties. Some of the are isAdmin (false by default), isActive (true by default. Created to remove login permission to already registered user), uuid (random and unike token. Created to provided a random identifier token for every user different than _id native MongoDB value)
  */
 const UsersSchema = new Schema({
 	email: {
@@ -34,7 +34,6 @@ const UsersSchema = new Schema({
 	uuid: {
 		type: String,
 		required: true,
-		unique: true,
 		default: uuidv4()
 	},
 	registrationDate: {

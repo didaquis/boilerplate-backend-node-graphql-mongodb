@@ -12,8 +12,8 @@ require('dotenv').config();
  * @module appConfig
  */
 
-
 const serverPortByDefault = 4000;
+const limitOfUsersRegistered = 0; /* Set the value to 0 to not use the limit. Remember put the same value on the enviroment variables */
 
 /**
  * Enviroment variables configuration
@@ -28,7 +28,7 @@ const enviromentVariablesConfig = Object.freeze({
 	mongoUser: process.env.MONGO_USER || '',
 	mongoPass: process.env.MONGO_PASS || '',
 	enviroment: (process.env.ENVIROMENT === 'development') ? process.env.ENVIROMENT : 'production',
-	serverPort: process.env.SERVER_PORT || serverPortByDefault
+	serverPort: Number(process.env.SERVER_PORT) || serverPortByDefault
 });
 
 /**
@@ -40,5 +40,13 @@ const securityVariablesConfig = Object.freeze({
 	timeExpiration: process.env.DURATION || '2h'
 });
 
+/**
+ * Global variables configuration
+ * @type {object}
+ */
+const globalVariablesConfig = Object.freeze({
+	limitOfUsersRegistered: Number(process.env.LIMIT_USERS_REGISTERED) || limitOfUsersRegistered
+});
+
 /** Variables configuration */
-module.exports = { enviromentVariablesConfig, securityVariablesConfig };
+module.exports = { enviromentVariablesConfig, securityVariablesConfig, globalVariablesConfig };

@@ -40,7 +40,7 @@
         "semi-spacing": ["error"],
         "space-before-function-paren": ["error"],
         "no-multi-spaces": "error",
-        "no-magic-numbers": "warn",
+        "no-magic-numbers": ["warn", { "ignore": [0], "ignoreArrayIndexes": true }],
         "valid-typeof": "error"
     }
 }
