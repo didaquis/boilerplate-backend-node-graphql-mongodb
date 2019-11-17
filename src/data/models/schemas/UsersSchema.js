@@ -34,7 +34,8 @@ const UsersSchema = new Schema({
 	uuid: {
 		type: String,
 		required: true,
-		default: uuidv4()
+		unique: true,
+		default: uuidv4
 	},
 	registrationDate: {
 		type: Date,
