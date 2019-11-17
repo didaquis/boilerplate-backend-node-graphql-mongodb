@@ -4,6 +4,11 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const uuidv4 = require('uuid/v4');
 
+/**
+ * Users schema
+ * @constructor Users model constructor
+ * @classdesc User have interesting properties. Some of the are isAdmin (false by default), isActive (true by default. Created to remove login permission to already registered user), uuid (random and unike token. Created to provided a unique value for every user different from _id native MongoDB value)
+ */
 const UsersSchema = new Schema({
 	email: {
 		type: String,

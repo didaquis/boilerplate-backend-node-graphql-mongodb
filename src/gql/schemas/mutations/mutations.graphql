@@ -1,8 +1,8 @@
 type Mutation {
-	# users
-	""" Te permite crear un nuevo usuario """
+	# Users mutations
+	""" It allows users to register """
 	registerUser(email: String!, password: String!): Token
 
-	""" Permite autenticar a un usuario """
+	""" It allows users to authenticate """
 	authUser(email: String!, password: String!): Token
 }

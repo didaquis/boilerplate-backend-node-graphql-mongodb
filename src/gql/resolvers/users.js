@@ -39,11 +39,14 @@ module.exports = {
 				token: createAuthToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
 		},
+		/**
+		 * It allows users to authenticate. Users with property isActive with value false are not allowed to authenticate. When a user authenticates the value of lastLogin will be updated
+		 */
 		authUser: async (root, { email, password }) => {
-			const user = await Users.findOne({email});
+			const user = await Users.findOne({email, isActive: true});
 
 			if (!user) {
-				throw new Error('User not found');
+				throw new Error('User not found or login not allowed');
 			}
 
 			const isCorrectPassword = await bcrypt.compare(password, user.password);
