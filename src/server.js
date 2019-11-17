@@ -36,7 +36,7 @@ db.once('open', () => {
 const initApplication = () => {
 	const express = require('express');
 	const app = express();
-	app.use(cors());
+	app.use(cors({ credentials: true }));
 
 	const { getListOfIPV4Address } = require('./utils/utils');
 
