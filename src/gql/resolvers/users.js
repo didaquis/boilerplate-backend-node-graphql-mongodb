@@ -8,13 +8,11 @@ module.exports = {
 		 */
 		listAllUsers:  async (root, args, context) => {
 			if (!authValidations.isLogged(context)) {
-				//throw new Error('You must be logged in to perform this action');
-				return null;
+				throw new Error('You must be logged in to perform this action');
 			}
 
 			if (!authValidations.isAdmin(context)) {
-				//throw new Error('You must be an administrator to perform this action');
-				return null;
+				throw new Error('You must be an administrator to perform this action');
 			}
 
 			const users = await Users.find({});
