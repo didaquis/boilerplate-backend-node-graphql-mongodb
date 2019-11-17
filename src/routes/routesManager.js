@@ -6,7 +6,8 @@ const routesManager = Router();
 */
 
 routesManager.get('/', (req, res) => {
-	res.send('<h1>Hello World!</h1>');
+	const status = 200;
+	res.status(status).end();
 });
 
 
