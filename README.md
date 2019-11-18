@@ -12,12 +12,12 @@ Technologies used are: Node.js + GraphQL + Apollo + Express + Mongoose + MongoDB
 
 **✨ These are some of the highlights:** 
 
-✅ A server ready to use!
-✅ Users can login and registrate
-✅ You can add the 'administration' rol to some users
-✅ You can set a limit of users registered
-✅ Users data are stored on a database
-✅ The Auth validations are made with JWT
+✅ A server ready to use!  
+✅ Users can login and registrate  
+✅ You can add the 'administration' rol to some users  
+✅ You can set a limit of users registered  
+✅ Users data are stored on a database  
+✅ The Auth validations are made with JWT  
 
 ### 📝 Backend Requirements
 * MongoDB 4.0 or higher service running
@@ -28,7 +28,8 @@ Technologies used are: Node.js + GraphQL + Apollo + Express + Mongoose + MongoDB
 * Configure the application:
   * Duplicate the configuration file `_env` and rename as `.env`
   * Edit the file `.env`
-* Then use: `npm run start`. It's ready! That was fast enough, right? 🚀
+* Then use: `npm run start`. 
+* That's it! That was fast enough, right? 🚀
 
 **❗️You need help with `.env` file?** 
 
@@ -63,6 +64,7 @@ It would be great to receive your help. ♥️
 You can collaborate in multiple ways, of course. I recommend you check the **Roadmap** section of this documentation, but let me give you some ideas:
 * Help me with this documentation. If you think something it's not clear, open an issue and talk to me!
 * Share this project, mark it as a favorite (⭐️) or make some suggestions
+* Develop other frontends that can connect to this backend
 
 ### Roadmap
 Some ideas that I would like to implement:

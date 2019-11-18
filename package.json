@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "scripts": {
