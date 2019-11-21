@@ -36,7 +36,7 @@ Technologies used are: Node.js + GraphQL + Apollo + Express + Mongoose + MongoDB
 Do not worry, I have written some information for you. Meanwhile here you have a guide:
 
 | Key | Description |
-|-----|------------|
+|-----|-------------|
 | SERVER_PORT | The port for running these backend |
 | ENVIROMENT | The mode of execution of Node.js. Choose between: production or development |
 | LIMIT_USERS_REGISTERED | Maximum number of users allowed to register. Set the value to 0 to not use the limit |
