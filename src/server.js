@@ -6,7 +6,7 @@ const { enviromentVariablesConfig } = require('./config/appConfig');
 const { logger, endLogger } = require('./utils/logger');
 
 
-const mongooseConnectOptions = { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true };
+const mongooseConnectOptions = { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false };
 if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
 	mongoose.connect(enviromentVariablesConfig.mongoDNSseedlist, mongooseConnectOptions);
 } else {
