@@ -75,7 +75,7 @@ const initApplication = () => {
 
 	// Managing application shutdown
 	process.on('SIGINT', () => {
-		logger.info('\nStopping application...');
+		logger.info('Stopping application...');
 		endLogger();
 		process.exit();
 	});
