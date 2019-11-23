@@ -1,6 +1,7 @@
 'use strict';
 
 const { validateAuthToken } = require('./jwt');
+//const { logger } = require('../../utils/logger');
 
 const setContext = async ({ req }) => {
 	let token = req.headers['authorization'];
@@ -13,7 +14,7 @@ const setContext = async ({ req }) => {
 			const user = await validateAuthToken(token);
 			return { user }; // Add to Apollo Server context the user who is doing the request if auth token is provided and it's a valid token
 		} catch (error) {
-			//console.error(error); // eslint-disable-line no-console
+			//logger.debug(error);
 		}
 	}
 };

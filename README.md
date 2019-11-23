@@ -69,7 +69,6 @@ You can collaborate in multiple ways, of course. I recommend you check the **Roa
 ### Roadmap
 Some ideas that I would like to implement:
 * Add test!
-* Add [log4js](https://www.npmjs.com/package/log4js)
 * A GraphQL resolver to allow administrators to disable users
 * Improve documentation using the JSDoc library
 

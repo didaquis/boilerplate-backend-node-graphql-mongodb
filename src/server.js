@@ -1,5 +1,7 @@
 'use strict';
 
+const { logger, endLogger } = require('./utils/logger');
+
 const cors = require('cors');
 const mongoose = require('mongoose');
 
@@ -20,14 +22,14 @@ if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVa
 
 const db = mongoose.connection;
 db.on('error', (err) => {
-	console.error(`\nConnection error with database. ${err}`); // eslint-disable-line no-console
+	logger.error(`Connection error with database. ${err}`);
 });
 
 db.once('open', () => {
 	if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
-		console.log(`\nConnected with mongodb at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`); // eslint-disable-line no-console
+		logger.info(`Connected with mongodb at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`);
 	} else {
-		console.log(`\nConnected with mongodb at "${enviromentVariablesConfig.host}" in port "${enviromentVariablesConfig.port}" using database "${enviromentVariablesConfig.database}"`); // eslint-disable-line no-console
+		logger.info(`Connected with mongodb at "${enviromentVariablesConfig.host}" in port "${enviromentVariablesConfig.port}" using database "${enviromentVariablesConfig.database}"`);
 	}
 
 	initApplication();
@@ -64,16 +66,17 @@ const initApplication = () => {
 
 	app.listen(enviromentVariablesConfig.serverPort, () => {
 		getListOfIPV4Address().forEach(ip => {
-			console.log(`\nApplication running on: http://${ip}:${enviromentVariablesConfig.serverPort}`); // eslint-disable-line no-console
+			logger.info(`Application running on: http://${ip}:${enviromentVariablesConfig.serverPort}`);
 			if (enviromentVariablesConfig.enviroment !== 'production') {
-				console.log(`GraphQL Playground running on: http://${ip}:${enviromentVariablesConfig.serverPort}${server.graphqlPath}`); // eslint-disable-line no-console
+				logger.info(`GraphQL Playground running on: http://${ip}:${enviromentVariablesConfig.serverPort}${server.graphqlPath}`);
 			}
 		});
 	});
 
 	// Managing application shutdown
 	process.on('SIGINT', () => {
-		console.log('\nStopping application...'); // eslint-disable-line no-console
+		logger.info('\nStopping application...');
+		endLogger();
 		process.exit();
 	});
 };
