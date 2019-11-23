@@ -1,24 +1,21 @@
 'use strict';
 
-const { logger, endLogger } = require('./utils/logger');
-
-const cors = require('cors');
 const mongoose = require('mongoose');
 
 const { enviromentVariablesConfig } = require('./config/appConfig');
-const { setContext } = require('./gql/auth/context');
+const { logger, endLogger } = require('./utils/logger');
 
+
+const mongooseConnectOptions = { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true };
 if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
-	mongoose.connect(enviromentVariablesConfig.mongoDNSseedlist, { useNewUrlParser: true });
+	mongoose.connect(enviromentVariablesConfig.mongoDNSseedlist, mongooseConnectOptions);
 } else {
 	if (enviromentVariablesConfig.mongoUser !== '' && enviromentVariablesConfig.mongoPass !== '') {
-		mongoose.connect(`mongodb://${enviromentVariablesConfig.mongoUser}:${enviromentVariablesConfig.mongoPass}@${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, { useNewUrlParser: true });
+		mongoose.connect(`mongodb://${enviromentVariablesConfig.mongoUser}:${enviromentVariablesConfig.mongoPass}@${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, mongooseConnectOptions);
 	} else {
-		mongoose.connect(`mongodb://${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, { useNewUrlParser: true });
+		mongoose.connect(`mongodb://${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, mongooseConnectOptions);
 	}
 }
-
-// mongoose.set('setFindAndModify', false); // Prevent DeprecationWarning: collection.findAndModify is deprecated
 
 const db = mongoose.connection;
 db.on('error', (err) => {
@@ -27,9 +24,9 @@ db.on('error', (err) => {
 
 db.once('open', () => {
 	if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
-		logger.info(`Connected with mongodb at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`);
+		logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`);
 	} else {
-		logger.info(`Connected with mongodb at "${enviromentVariablesConfig.host}" in port "${enviromentVariablesConfig.port}" using database "${enviromentVariablesConfig.database}"`);
+		logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.host}" in port "${enviromentVariablesConfig.port}" using database "${enviromentVariablesConfig.database}"`);
 	}
 
 	initApplication();
@@ -37,17 +34,18 @@ db.once('open', () => {
 
 const initApplication = () => {
 	const express = require('express');
-	const app = express();
-	app.use(cors({ credentials: true }));
-
-	const { getListOfIPV4Address } = require('./utils/utils');
+	const cors = require('cors');
 
 	const { ApolloServer } = require('apollo-server-express');
-
+	const { setContext } = require('./gql/auth/context');
 	const typeDefs = require('./gql/schemas/index');
 	const resolvers = require('./gql/resolvers/index');
 
+	const { getListOfIPV4Address } = require('./utils/utils');
 	const routesManager = require('./routes/routesManager');
+
+	const app = express();
+	app.use(cors({ credentials: true }));
 	app.use('', routesManager);
 
 	const server = new ApolloServer({ 
