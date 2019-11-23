@@ -70,6 +70,4 @@ You can collaborate in multiple ways, of course. I recommend you check the **Roa
 ### Roadmap
 Some ideas that I would like to implement:
 * Add test!
-* A GraphQL resolver to allow administrators to disable users
-* Improve documentation using the JSDoc library
 
