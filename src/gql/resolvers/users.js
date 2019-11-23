@@ -3,6 +3,10 @@ const { ForbiddenError } = require('apollo-server-express');
 const { Users } = require('../../data/models/index');
 const { authValidations } = require('../auth/validations');
 
+/**
+ * All resolvers related to users
+ * @type {Object}
+ */
 module.exports = {
 	Query: {
 		/**
@@ -21,9 +25,6 @@ module.exports = {
 			return users;
 		}
 	},
-	/**
-	 * It allows to users to register as long as the limit of allowed users has not been reached
-	 */
 	Mutation: {
 	}
 };

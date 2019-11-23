@@ -1,13 +1,13 @@
 /* Home doc */
 /**
- * @file Configuration settings for log4js module
- * @see module:log4js
+ * @file Configuration settings for logger module
+ * @see module:logger
  */
 
 /* Module doc */
 /**
- * Configuration settings for log4js module
- * @module log4js
+ * Configuration settings for logger module
+ * @module logger
  */
 
 const log4js = require('log4js');

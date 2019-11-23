@@ -7,13 +7,17 @@ const { securityVariablesConfig, globalVariablesConfig } = require('../../config
 
 const bcrypt = require('bcrypt');
 
+/**
+ * All resolvers related to auth
+ * @type {Object}
+ */
 module.exports = {
 	Query: {
 	},
-	/**
-	 * It allows to users to register as long as the limit of allowed users has not been reached
-	 */
 	Mutation: {
+		/**
+		 * It allows to users to register as long as the limit of allowed users has not been reached
+		 */
 		registerUser: async (root, { email, password }) => {
 			if (!email || !password) {
 				throw new AuthenticationError('Data provided is not valid');

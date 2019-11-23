@@ -3,6 +3,10 @@
 const { validateAuthToken } = require('./jwt');
 //const { logger } = require('../../utils/logger');
 
+
+/**
+ * Context function fro Apollo Server
+ */
 const setContext = async ({ req }) => {
 	let token = req.headers['authorization'];
 	if (token && typeof token === 'string') {
