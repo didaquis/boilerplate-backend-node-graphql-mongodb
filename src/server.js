@@ -11,9 +11,9 @@ if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVa
 	mongoose.connect(enviromentVariablesConfig.mongoDNSseedlist, mongooseConnectOptions);
 } else {
 	if (enviromentVariablesConfig.mongoUser !== '' && enviromentVariablesConfig.mongoPass !== '') {
-		mongoose.connect(`mongodb://${enviromentVariablesConfig.mongoUser}:${enviromentVariablesConfig.mongoPass}@${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, mongooseConnectOptions);
+		mongoose.connect(`mongodb://${enviromentVariablesConfig.mongoUser}:${enviromentVariablesConfig.mongoPass}@${enviromentVariablesConfig.dbHost}:${enviromentVariablesConfig.dbPort}/${enviromentVariablesConfig.database}`, mongooseConnectOptions);
 	} else {
-		mongoose.connect(`mongodb://${enviromentVariablesConfig.host}:${enviromentVariablesConfig.port}/${enviromentVariablesConfig.database}`, mongooseConnectOptions);
+		mongoose.connect(`mongodb://${enviromentVariablesConfig.dbHost}:${enviromentVariablesConfig.dbPort}/${enviromentVariablesConfig.database}`, mongooseConnectOptions);
 	}
 }
 
@@ -26,7 +26,7 @@ db.once('open', () => {
 	if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
 		logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`);
 	} else {
-		logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.host}" in port "${enviromentVariablesConfig.port}" using database "${enviromentVariablesConfig.database}"`);
+		logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.dbHost}" in port "${enviromentVariablesConfig.dbPort}" using database "${enviromentVariablesConfig.database}"`);
 	}
 
 	initApplication();
@@ -62,11 +62,11 @@ const initApplication = () => {
 		res.status(404).send('404'); // eslint-disable-line no-magic-numbers
 	});
 
-	app.listen(enviromentVariablesConfig.serverPort, () => {
+	app.listen(enviromentVariablesConfig.port, () => {
 		getListOfIPV4Address().forEach(ip => {
-			logger.info(`Application running on: http://${ip}:${enviromentVariablesConfig.serverPort}`);
+			logger.info(`Application running on: http://${ip}:${enviromentVariablesConfig.port}`);
 			if (enviromentVariablesConfig.enviroment !== 'production') {
-				logger.info(`GraphQL Playground running on: http://${ip}:${enviromentVariablesConfig.serverPort}${server.graphqlPath}`);
+				logger.info(`GraphQL Playground running on: http://${ip}:${enviromentVariablesConfig.port}${server.graphqlPath}`);
 			}
 		});
 	});

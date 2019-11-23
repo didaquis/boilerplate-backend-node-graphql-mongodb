@@ -1,5 +1,5 @@
 # Server port configuration:
-SERVER_PORT=4000
+PORT=4000
 
 # Enviroment (choose between: "production" or "development"):
 ENVIROMENT=development

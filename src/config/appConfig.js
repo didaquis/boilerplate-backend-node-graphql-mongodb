@@ -22,13 +22,13 @@ const limitOfUsersRegistered = 0; /* Set the value to 0 to not use the limit. Re
 const enviromentVariablesConfig = Object.freeze({
 	formatConnection: process.env.MONGO_FORMAT_CONNECTION || 'standard',
 	mongoDNSseedlist: process.env.MONGO_DNS_SEEDLIST_CONNECTION || '',
-	host: process.env.MONGO_HOST || 'localhost',
-	port: process.env.MONGO_PORT || '27017',
+	dbHost: process.env.MONGO_HOST || 'localhost',
+	dbPort: process.env.MONGO_PORT || '27017',
 	database: process.env.MONGO_DB || 'boilerplate_database',
 	mongoUser: process.env.MONGO_USER || '',
 	mongoPass: process.env.MONGO_PASS || '',
 	enviroment: (process.env.ENVIROMENT === 'development') ? process.env.ENVIROMENT : 'production',
-	serverPort: Number(process.env.SERVER_PORT) || serverPortByDefault
+	port: Number(process.env.PORT) || serverPortByDefault
 });
 
 /**
