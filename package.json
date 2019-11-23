@@ -1,8 +1,11 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "0.3.31",
+  "version": "0.3.32",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
