@@ -1,12 +1,13 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "0.3.27",
+  "version": "0.3.28",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
-    "lint": "eslint --ext .js ."
+    "lint": "eslint --ext .js .",
+    "purge": "rm -fr ./logs"
   },
   "keywords": [
     "boilerplate",
