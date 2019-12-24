@@ -11,12 +11,12 @@ const { securityVariablesConfig } = require('../../config/appConfig');
  * @param {Boolean} 	userData.isAdmin 	- Payload data: If user is admin or not
  * @param {Boolean} 	userData.isActive 	- Payload data: If user is active or not
  * @param {String} 		userData.uuid 		- Payload data: An uuid token
- * @param {String} 		secreto 			- Secret or private key
- * @param {String} 		[tiempoExpiracion] 	- Time of token expiration. Default value '2h'
+ * @param {String} 		secret 				- Secret or private key
+ * @param {String} 		[expirationTime] 	- Time of token expiration. Default value '2h'
  * @returns	{String}						- Json Web Token
  */
-const createAuthToken = ({ email, isAdmin, isActive, uuid }, secreto, tiempoExpiracion = '2h') => {
-	return jwt.sign({ email, isAdmin, isActive, uuid }, secreto, { expiresIn: tiempoExpiracion });
+const createAuthToken = ({ email, isAdmin, isActive, uuid }, secret, expirationTime = '2h') => {
+	return jwt.sign({ email, isAdmin, isActive, uuid }, secret, { expiresIn: expirationTime });
 };
 
 /**
