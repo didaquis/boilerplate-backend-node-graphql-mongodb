@@ -34,6 +34,8 @@ db.once('open', () => {
 
 const initApplication = () => {
 	const express = require('express');
+	const favicon = require('serve-favicon');
+ 	const path = require('path');
 	const cors = require('cors');
 
 	const { ApolloServer } = require('apollo-server-express');
@@ -46,6 +48,7 @@ const initApplication = () => {
 
 	const app = express();
 	app.use(cors({ credentials: true }));
+	app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 	app.use('', routesManager);
 
 	const server = new ApolloServer({ 
