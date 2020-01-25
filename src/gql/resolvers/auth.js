@@ -54,13 +54,13 @@ module.exports = {
 			const user = await Users.findOne({email, isActive: true});
 
 			if (!user) {
-				throw new ForbiddenError('User not found or login not allowed');
+				throw new UserInputError('User not found or login not allowed');
 			}
 
 			const isCorrectPassword = await bcrypt.compare(password, user.password);
 
 			if (!isCorrectPassword) {
-				throw new ForbiddenError('Invalid credentials');
+				throw new UserInputError('Invalid credentials');
 			}
 
 			await Users.findOneAndUpdate({email}, { lastLogin: new Date().toISOString() }, { new: true });
