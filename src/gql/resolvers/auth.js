@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { ForbiddenError, UserInputError } = require('apollo-server-express');
 
 const { Users } = require('../../data/models/index');
 const { createAuthToken } = require('../auth/jwt');
@@ -20,19 +20,19 @@ module.exports = {
 		 */
 		registerUser: async (root, { email, password }) => {
 			if (!email || !password) {
-				throw new AuthenticationError('Data provided is not valid');
+				throw new UserInputError('Data provided is not valid');
 			}
 
 			const numberOfCurrentlyUsersRegistered = await Users.find().estimatedDocumentCount();
 
 			if (authValidations.isLimitOfUsersReached(numberOfCurrentlyUsersRegistered, globalVariablesConfig.limitOfUsersRegistered)) {
-				throw new AuthenticationError('The maximum number of users allowed has been reached. You must contact the administrator of the service in order to register');
+				throw new ForbiddenError('The maximum number of users allowed has been reached. You must contact the administrator of the service in order to register');
 			}
 
 			const isAnEmailAlreadyRegistered = await Users.findOne({email});
 
 			if (isAnEmailAlreadyRegistered) {
-				throw new AuthenticationError('Data provided is not valid');
+				throw new UserInputError('Data provided is not valid');
 			}
 
 			await new Users({email, password}).save();
@@ -48,19 +48,19 @@ module.exports = {
 		 */
 		authUser: async (root, { email, password }) => {
 			if (!email || !password) {
-				throw new AuthenticationError('Invalid credentials');
+				throw new UserInputError('Invalid credentials');
 			}
 
 			const user = await Users.findOne({email, isActive: true});
 
 			if (!user) {
-				throw new AuthenticationError('User not found or login not allowed');
+				throw new ForbiddenError('User not found or login not allowed');
 			}
 
 			const isCorrectPassword = await bcrypt.compare(password, user.password);
 
 			if (!isCorrectPassword) {
-				throw new AuthenticationError('Invalid credentials');
+				throw new ForbiddenError('Invalid credentials');
 			}
 
 			await Users.findOneAndUpdate({email}, { lastLogin: new Date().toISOString() }, { new: true });

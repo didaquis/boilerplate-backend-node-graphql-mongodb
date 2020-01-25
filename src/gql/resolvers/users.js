@@ -1,4 +1,4 @@
-const { ForbiddenError } = require('apollo-server-express');
+const { AuthenticationError, ForbiddenError } = require('apollo-server-express');
 
 const { Users } = require('../../data/models/index');
 const { authValidations } = require('../auth/validations');
@@ -14,7 +14,7 @@ module.exports = {
 		 */
 		listAllUsers:  async (root, args, context) => {
 			if (!authValidations.isLogged(context)) {
-				throw new ForbiddenError('You must be logged in to perform this action');
+				throw new AuthenticationError('You must be logged in to perform this action');
 			}
 
 			if (!authValidations.isAdmin(context)) {
