@@ -62,12 +62,8 @@ To make a user an administrator you must access to the database and search its r
 ### Would you like to contribute to this project?
 It would be great to receive your help. ♥️ 
 
-You can collaborate in multiple ways, of course. I recommend you check the **Roadmap** section of this documentation, but let me give you some ideas:
+You can collaborate in multiple ways, of course. Let me give you some ideas:
 * Help me with this documentation. If you think something it's not clear, open an issue and talk to me!
 * Share this project, mark it as a favorite (⭐️) or make some suggestions
 * Develop other frontends that can connect to this backend
-
-### Roadmap
-Some ideas that I would like to implement:
-* Add test!
 
