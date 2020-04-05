@@ -23,10 +23,14 @@ db.on('error', (err) => {
 });
 
 db.once('open', () => {
-	if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
-		logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`);
+	if (enviromentVariablesConfig.enviroment !== 'development') {
+		logger.info('Connected with MongoDB service');
 	} else {
-		logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.dbHost}" in port "${enviromentVariablesConfig.dbPort}" using database "${enviromentVariablesConfig.database}"`);
+		if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
+			logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`);
+		} else {
+			logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.dbHost}" in port "${enviromentVariablesConfig.dbPort}" using database "${enviromentVariablesConfig.database}"`);
+		}
 	}
 
 	initApplication();
@@ -35,7 +39,7 @@ db.once('open', () => {
 const initApplication = () => {
 	const express = require('express');
 	const favicon = require('serve-favicon');
- 	const path = require('path');
+	const path = require('path');
 	const cors = require('cors');
 
 	const { ApolloServer } = require('apollo-server-express');
