@@ -23,6 +23,14 @@ module.exports = {
 				throw new UserInputError('Data provided is not valid');
 			}
 
+			if (!authValidations.isValidEmail(email)) {
+				throw new UserInputError('The email is not valid');
+			}
+
+			if (!authValidations.isStrongPassword(password)) {
+				throw new UserInputError('The password is not secure enough');
+			}
+
 			const numberOfCurrentlyUsersRegistered = await Users.find().estimatedDocumentCount();
 
 			if (authValidations.isLimitOfUsersReached(numberOfCurrentlyUsersRegistered, globalVariablesConfig.limitOfUsersRegistered)) {
@@ -44,7 +52,7 @@ module.exports = {
 			};
 		},
 		/**
-		 * It allows users to authenticate. Users with property isActive with value false are not allowed to authenticate. When a user authenticates the value of lastLogin will be updated
+		 * It allows users to authenticate. Users with property isActive with value false are not allowed to authenticate. When an user authenticates the value of lastLogin will be updated
 		 */
 		authUser: async (root, { email, password }) => {
 			if (!email || !password) {
