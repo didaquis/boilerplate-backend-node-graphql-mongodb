@@ -1,4 +1,4 @@
-const { ForbiddenError, UserInputError } = require('apollo-server-express');
+const { ValidationError, UserInputError } = require('apollo-server-express');
 
 const { Users } = require('../../data/models/index');
 const { createAuthToken } = require('../auth/jwt');
@@ -26,7 +26,7 @@ module.exports = {
 			const numberOfCurrentlyUsersRegistered = await Users.find().estimatedDocumentCount();
 
 			if (authValidations.isLimitOfUsersReached(numberOfCurrentlyUsersRegistered, globalVariablesConfig.limitOfUsersRegistered)) {
-				throw new ForbiddenError('The maximum number of users allowed has been reached. You must contact the administrator of the service in order to register');
+				throw new ValidationError('The maximum number of users allowed has been reached. You must contact the administrator of the service in order to register');
 			}
 
 			const isAnEmailAlreadyRegistered = await Users.findOne({email});
