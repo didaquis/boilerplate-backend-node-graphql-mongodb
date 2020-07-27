@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "0.5.47",
+  "version": "0.5.48",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
@@ -25,7 +25,9 @@
   "author": "Dídac García (https://didaquis.github.io/)",
   "license": "MIT",
   "devDependencies": {
+    "husky": "4.2.5",
     "jest": "26.1.0",
+    "jsonfile": "6.0.1",
     "nodemon": "2.0.4",
     "rimraf": "3.0.2"
   },
@@ -44,5 +46,10 @@
     "mongoose": "5.9.25",
     "serve-favicon": "2.5.0",
     "uuid": "8.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
   }
 }
