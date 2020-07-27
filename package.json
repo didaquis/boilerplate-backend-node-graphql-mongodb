@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "0.4.46",
+  "version": "0.5.47",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
@@ -9,6 +9,8 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
     "lint": "eslint --ext .js .",
     "clean": "rimraf logs"
   },
@@ -23,23 +25,24 @@
   "author": "Dídac García (https://didaquis.github.io/)",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.2",
-    "rimraf": "^3.0.2"
+    "jest": "26.1.0",
+    "nodemon": "2.0.4",
+    "rimraf": "3.0.2"
   },
   "dependencies": {
-    "apollo-server-express": "^2.11.0",
-    "bcrypt": "^4.0.1",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "graphql": "^15.0.0",
-    "graphql-import": "^1.0.1",
-    "graphql-tools": "^4.0.7",
-    "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.15",
-    "log4js": "^6.1.2",
-    "mongoose": "^5.9.7",
-    "serve-favicon": "^2.5.0",
-    "uuid": "^7.0.3"
+    "apollo-server-express": "2.16.0",
+    "bcrypt": "5.0.0",
+    "cors": "2.8.5",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "graphql": "15.3.0",
+    "graphql-import": "1.0.2",
+    "graphql-tools": "6.0.15",
+    "jsonwebtoken": "8.5.1",
+    "lodash": "4.17.19",
+    "log4js": "6.3.0",
+    "mongoose": "5.9.25",
+    "serve-favicon": "2.5.0",
+    "uuid": "8.2.0"
   }
 }
