@@ -57,6 +57,7 @@ To make a user an administrator you must access to the database and search its r
 ### 💻 Tricks for development
 * Run app in dev mode: `npm run dev`
 * Run the linter: `npm run lint`
+* Run the tests: `npm run test` or `npm run test:watch`
 * Delete all log files: `npm run clean`
 
 ### Would you like to contribute to this project?
