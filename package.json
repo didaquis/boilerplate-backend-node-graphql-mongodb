@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "0.5.48",
+  "version": "0.5.49",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
@@ -41,7 +41,7 @@
     "graphql-import": "1.0.2",
     "graphql-tools": "6.0.15",
     "jsonwebtoken": "8.5.1",
-    "lodash": "4.17.19",
+    "lodash.merge": "4.6.2",
     "log4js": "6.3.0",
     "mongoose": "5.9.25",
     "serve-favicon": "2.5.0",

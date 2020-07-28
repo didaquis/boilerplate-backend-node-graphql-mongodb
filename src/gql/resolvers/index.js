@@ -1,4 +1,4 @@
-const { merge } = require('lodash');
+const merge = require('lodash.merge');
 
 const users = require('./users');
 const auth = require('./auth');
