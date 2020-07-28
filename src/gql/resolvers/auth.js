@@ -1,3 +1,5 @@
+'use strict';
+
 const { ValidationError, UserInputError } = require('apollo-server-express');
 
 const { Users } = require('../../data/models/index');
