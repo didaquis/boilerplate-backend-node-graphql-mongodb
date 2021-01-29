@@ -1,10 +1,10 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "1.0.53",
+  "version": "1.1.0",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "scripts": {
     "start": "node .",
@@ -25,26 +25,26 @@
   "author": "Dídac García (https://didaquis.github.io/)",
   "license": "MIT",
   "devDependencies": {
-    "husky": "4.3.0",
+    "husky": "4.3.8",
     "jest": "26.6.3",
     "jsonfile": "6.1.0",
-    "nodemon": "2.0.6",
+    "nodemon": "2.0.7",
     "rimraf": "3.0.2"
   },
   "dependencies": {
-    "apollo-server-express": "2.16.0",
+    "apollo-server-express": "2.19.2",
     "bcrypt": "5.0.0",
     "cors": "2.8.5",
     "dotenv": "8.2.0",
     "express": "4.17.1",
-    "graphql": "15.4.0",
+    "graphql": "15.5.0",
     "graphql-import": "1.0.2",
     "jsonwebtoken": "8.5.1",
     "lodash.merge": "4.6.2",
     "log4js": "6.3.0",
-    "mongoose": "5.10.9",
+    "mongoose": "5.11.14",
     "serve-favicon": "2.5.0",
-    "uuid": "8.3.1"
+    "uuid": "8.3.2"
   },
   "husky": {
     "hooks": {

@@ -1,13 +1,12 @@
 {
     "env": {
-        "browser": true,
         "es6": true,
         "node": true,
         "jest": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 8,
+        "ecmaVersion": 9,
         "sourceType": "module"
     },
     "rules": {

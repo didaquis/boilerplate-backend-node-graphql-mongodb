@@ -20,8 +20,8 @@ Technologies used are: Node.js + GraphQL + Apollo + Express + Mongoose + MongoDB
 ✅ The Auth validations are made with JWT  
 
 ### 📝 Backend Requirements
-* MongoDB 4.0 or higher service running
-* Node.js 10 or higher
+* MongoDB 4.4 or higher
+* Node.js 14 or higher
 
 ### 📚 How to run the application?
 * Use the command: `npm install`. If you are deploying the app in production, it's better to use this command: `npm install --production`
