@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const { enviromentVariablesConfig } = require('./config/appConfig');
 const { logger, endLogger } = require('./utils/logger');
+const { requestDevLogger } = require('./utils/requestDevLogger');
 
 
 const mongooseConnectOptions = { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false };
@@ -24,12 +25,12 @@ db.on('error', (err) => {
 
 db.once('open', () => {
 	if (enviromentVariablesConfig.enviroment !== 'development') {
-		logger.info('Connected with MongoDB service');
+		logger.info('Connected with MongoDB service (production mode)');
 	} else {
 		if (enviromentVariablesConfig.formatConnection === 'DNSseedlist' && enviromentVariablesConfig.mongoDNSseedlist !== '') {
-			logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}"`);
+			logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.mongoDNSseedlist}" using database "${enviromentVariablesConfig.database}" (development mode)`);
 		} else {
-			logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.dbHost}" in port "${enviromentVariablesConfig.dbPort}" using database "${enviromentVariablesConfig.database}"`);
+			logger.info(`Connected with MongoDB service at "${enviromentVariablesConfig.dbHost}" in port "${enviromentVariablesConfig.dbPort}" using database "${enviromentVariablesConfig.database}" (development mode)`);
 		}
 	}
 
@@ -60,7 +61,8 @@ const initApplication = () => {
 		resolvers,
 		context: setContext,
 		introspection: (enviromentVariablesConfig.enviroment === 'production') ? false : true, // Set to "true" only in development mode
-		playground: (enviromentVariablesConfig.enviroment === 'production') ? false : true // Set to "true" only in development mode
+		playground: (enviromentVariablesConfig.enviroment === 'production') ? false : true, // Set to "true" only in development mode
+		plugins: (enviromentVariablesConfig.enviroment === 'production') ? [] : [requestDevLogger], // Log all querys and their responses (do not use in production)
 	});
 
 	server.applyMiddleware({app});

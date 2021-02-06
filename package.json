@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
@@ -25,6 +25,7 @@
   "author": "Dídac García (https://didaquis.github.io/)",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "7.19.0",
     "husky": "4.3.8",
     "jest": "26.6.3",
     "jsonfile": "6.1.0",
