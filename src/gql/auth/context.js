@@ -5,7 +5,7 @@ const { validateAuthToken } = require('./jwt');
 
 
 /**
- * Context function fro Apollo Server
+ * Context function from Apollo Server
  */
 const setContext = async ({ req }) => {
 	let token = req.headers['authorization'];
