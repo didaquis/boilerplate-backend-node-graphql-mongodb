@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
@@ -26,6 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "7.21.0",
+    "eslint-plugin-no-lenght": "1.0.2-0",
     "husky": "4.3.8",
     "jest": "26.6.3",
     "jsonfile": "6.1.0",

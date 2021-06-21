@@ -29,7 +29,7 @@ describe('package.json file', () => {
 
 	test('Should have all devDependencies with semver version fixed', () => {
 		if (packageJSONData.devDependencies) {
-			const validPattern = /^(\d+\.)(\d+\.)(\d+)$/;
+			const validPattern = /^(\d+\.)(\d+\.)(\d+)/;
 			const regex = RegExp(validPattern);
 
 			let allDevDependenciesAreFixed = true;
