@@ -5,6 +5,7 @@ const { ValidationError, UserInputError } = require('apollo-server-express');
 const { Users } = require('../../data/models/index');
 const { createAuthToken } = require('../auth/jwt');
 const { authValidations } = require('../auth/validations');
+const { isValidEmail, isStrongPassword } = require('../../utils/validations');
 const { securityVariablesConfig, globalVariablesConfig } = require('../../config/appConfig');
 
 const bcrypt = require('bcrypt');
@@ -25,11 +26,11 @@ module.exports = {
 				throw new UserInputError('Data provided is not valid');
 			}
 
-			if (!authValidations.isValidEmail(email)) {
+			if (!isValidEmail(email)) {
 				throw new UserInputError('The email is not valid');
 			}
 
-			if (!authValidations.isStrongPassword(password)) {
+			if (!isStrongPassword(password)) {
 				throw new UserInputError('The password is not secure enough');
 			}
 
