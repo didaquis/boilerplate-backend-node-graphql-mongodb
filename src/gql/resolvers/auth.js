@@ -4,7 +4,7 @@ const { ValidationError, UserInputError } = require('apollo-server-express');
 
 const { Users } = require('../../data/models/index');
 const { createAuthToken } = require('../auth/jwt');
-const { authValidations } = require('../auth/validations');
+const { authValidations } = require('../auth/authValidations');
 const { isValidEmail, isStrongPassword } = require('../../helpers/validations');
 const { securityVariablesConfig, globalVariablesConfig } = require('../../config/appConfig');
 

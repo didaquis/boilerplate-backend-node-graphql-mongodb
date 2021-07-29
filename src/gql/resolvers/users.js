@@ -3,7 +3,7 @@
 const { AuthenticationError, ForbiddenError } = require('apollo-server-express');
 
 const { Users } = require('../../data/models/index');
-const { authValidations } = require('../auth/validations');
+const { authValidations } = require('../auth/authValidations');
 
 /**
  * All resolvers related to users
