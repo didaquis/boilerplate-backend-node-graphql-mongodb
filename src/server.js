@@ -48,7 +48,7 @@ const initApplication = () => {
 	const typeDefs = require('./gql/schemas/index');
 	const resolvers = require('./gql/resolvers/index');
 
-	const { getListOfIPV4Address } = require('./helpers/utils');
+	const { getListOfIPV4Address } = require('./helpers/getListOfIPV4Address');
 	const routesManager = require('./routes/routesManager');
 
 	const app = express();
