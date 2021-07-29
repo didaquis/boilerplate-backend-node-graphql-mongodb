@@ -1,7 +1,7 @@
 'use strict';
 
 const { validateAuthToken } = require('./jwt');
-//const { logger } = require('../../utils/logger');
+//const { logger } = require('../../helpers/logger');
 
 
 /**
