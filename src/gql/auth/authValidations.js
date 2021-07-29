@@ -1,6 +1,6 @@
 'use strict';
 
-const { AuthenticationError, ForbiddenError } = require('apollo-server-express');
+const { AuthenticationError, ForbiddenError, ValidationError } = require('apollo-server-express');
 const { Users } = require('../../data/models/index');
 
 /**
@@ -9,17 +9,18 @@ const { Users } = require('../../data/models/index');
  */
 const authValidations = {
 	/**
-	 * Check if the maximum limit of users has been reached
+	 * Check if the maximum limit of users has been reached. If limit is reached, throw an error.
 	 * @param  {Integer} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
 	 * @param  {Integer} limitOfUsers 						- Represents the maximum number of users allowed in the service. Zero represents no limit
-	 * @return {Boolean}
 	 */
-	isLimitOfUsersReached: (numberOfCurrentlyUsersRegistered = 0, limitOfUsers = 0) => {
-		if (limitOfUsers === 0) return false;
+	ensureLimitOfUsersIsNotReached: (numberOfCurrentlyUsersRegistered, limitOfUsers) => {
+		if (limitOfUsers === 0) {
+			return;
+		}
 
-		if (numberOfCurrentlyUsersRegistered >= limitOfUsers) return true;
-
-		return false;
+		if (numberOfCurrentlyUsersRegistered >= limitOfUsers) {
+			throw new ValidationError('The maximum number of users allowed has been reached. You must contact the administrator of the service in order to register');
+		}
 	},
 
 	/**
