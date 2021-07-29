@@ -9,7 +9,7 @@ const { Users } = require('../../data/models/index');
  */
 const authValidations = {
 	/**
-	 * Check if the maximum limit of users has been reached. If limit is reached, throw an error.
+	 * Check if the maximum limit of users has been reached. If limit is reached, it throws an error.
 	 * @param  {Integer} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
 	 * @param  {Integer} limitOfUsers 						- Represents the maximum number of users allowed in the service. Zero represents no limit
 	 */
@@ -24,7 +24,7 @@ const authValidations = {
 	},
 
 	/**
-	 * Check if in Apollo Server context contains a logged user. If user is not in context, throw an error
+	 * Check if in Apollo Server context contains a logged user. If user is not in context, it throws an error
 	 * @param {Object} context 			- The context object of Apollo Server
 	 * @param  {Object} [context.user]  - The context object data: user data
 	 */
@@ -35,7 +35,7 @@ const authValidations = {
 	},
 
 	/**
-	 * Check if in Apollo Server context contains an user and is an administrator. If user is not in context or user is not an administrator throw an error
+	 * Check if in Apollo Server context contains an user and is an administrator. If user is not in context or user is not an administrator it throws an error
 	 * @param {Object} context 					- The context object of Apollo Server
 	 * @param  {Object} [context.user]  		- The context object data: user data
 	 * @param  {Boolean} [context.user.isAdmin] - The context object data: user data role information
@@ -47,7 +47,7 @@ const authValidations = {
 	},
 
 	/**
-	 * Uses the information in the Apollo Server context to retrieve the user's data from the database. If user does not exist, throw an error.
+	 * Uses the information in the Apollo Server context to retrieve the user's data from the database. If user does not exist, it throws an error.
 	 * @async
 	 * @param {Object} context 					- The context object of Apollo Server
 	 * @param  {Object} [context.user]  		- The context object data: user data
