@@ -21,7 +21,7 @@ module.exports = {
 		/**
 		 * It allows to users to register as long as the limit of allowed users has not been reached
 		 */
-		registerUser: async (root, { email, password }) => {
+		registerUser: async (parent, { email, password }) => {
 			if (!email || !password) {
 				throw new UserInputError('Data provided is not valid');
 			}
@@ -55,7 +55,7 @@ module.exports = {
 		/**
 		 * It allows users to authenticate. Users with property isActive with value false are not allowed to authenticate. When an user authenticates the value of lastLogin will be updated
 		 */
-		authUser: async (root, { email, password }) => {
+		authUser: async (parent, { email, password }) => {
 			if (!email || !password) {
 				throw new UserInputError('Invalid credentials');
 			}

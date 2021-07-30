@@ -12,7 +12,7 @@ module.exports = {
 		/**
 		 * It allows to administrators users to list all users registered
 		 */
-		listAllUsers:  async (root, args, context) => {
+		listAllUsers:  async (parent, args, context) => {
 			authValidations.ensureThatUserIsLogged(context);
 
 			authValidations.ensureThatUserIsAdministrator(context);
