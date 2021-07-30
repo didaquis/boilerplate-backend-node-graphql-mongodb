@@ -1,11 +1,22 @@
 'use strict';
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import express from 'express';
+import favicon from 'serve-favicon';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cors from 'cors';
+import { ApolloServer } from 'apollo-server-express';
 
-const { ENVIRONMENT } = require('./config/environment');
-const { environmentVariablesConfig } = require('./config/appConfig');
-const { logger, endLogger } = require('./helpers/logger');
-const { requestDevLogger } = require('./helpers/requestDevLogger');
+import { ENVIRONMENT } from './config/environment.js';
+import { environmentVariablesConfig } from './config/appConfig.js';
+import { logger, endLogger } from './helpers/logger.js';
+import { requestDevLogger } from './helpers/requestDevLogger.js';
+import { setContext } from './gql/auth/setContext.js';
+import { typeDefs } from './gql/schemas/index.js';
+import { resolvers } from './gql/resolvers/index.js';
+import { getListOfIPV4Address } from './helpers/getListOfIPV4Address.js';
+import routesManager from './routes/routesManager.js';
 
 
 const mongooseConnectOptions = { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false };
@@ -39,21 +50,9 @@ db.once('open', () => {
 });
 
 const initApplication = () => {
-	const express = require('express');
-	const favicon = require('serve-favicon');
-	const path = require('path');
-	const cors = require('cors');
-
-	const { ApolloServer } = require('apollo-server-express');
-	const { setContext } = require('./gql/auth/setContext');
-	const typeDefs = require('./gql/schemas/index');
-	const resolvers = require('./gql/resolvers/index');
-
-	const { getListOfIPV4Address } = require('./helpers/getListOfIPV4Address');
-	const routesManager = require('./routes/routesManager');
-
 	const app = express();
 	app.use(cors({ credentials: true }));
+	const __dirname = path.dirname(fileURLToPath(import.meta.url));
 	app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 	app.use('', routesManager);
 

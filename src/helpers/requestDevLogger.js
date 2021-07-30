@@ -1,6 +1,6 @@
-const { logger } = require('./logger');
+import { logger } from './logger.js';
 
-const requestDevLogger = {
+export const requestDevLogger = {
 	// Fires whenever a GraphQL request is received from a client
 	requestDidStart (requestContext) {
 		logger.debug('Query:');
@@ -23,5 +23,3 @@ const requestDevLogger = {
 		};
 	}
 };
-
-module.exports = { requestDevLogger };

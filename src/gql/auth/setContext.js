@@ -1,14 +1,14 @@
 'use strict';
 
-const { validateAuthToken } = require('./jwt');
-const { environmentVariablesConfig } = require('../../config/appConfig');
-const { ENVIRONMENT } = require('../../config/environment');
-const { logger } = require('../../helpers/logger');
+import { validateAuthToken } from './jwt.js';
+import { environmentVariablesConfig } from '../../config/appConfig.js';
+import { ENVIRONMENT } from '../../config/environment.js';
+import { logger } from '../../helpers/logger.js';
 
 /**
  * Context function from Apollo Server
  */
-const setContext = async ({ req }) => {
+export const setContext = async ({ req }) => {
 	let token = req.headers['authorization'];
 	if (token && typeof token === 'string') {
 		try {
@@ -25,5 +25,3 @@ const setContext = async ({ req }) => {
 		}
 	}
 };
-
-module.exports = { setContext };

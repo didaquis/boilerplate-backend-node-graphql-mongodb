@@ -1,20 +1,19 @@
 'use strict';
 
-const { UserInputError } = require('apollo-server-express');
+import { UserInputError } from 'apollo-server-express';
+import bcrypt from 'bcrypt';
 
-const { Users } = require('../../data/models/index');
-const { createAuthToken } = require('../auth/jwt');
-const { authValidations } = require('../auth/authValidations');
-const { isValidEmail, isStrongPassword } = require('../../helpers/validations');
-const { securityVariablesConfig, globalVariablesConfig } = require('../../config/appConfig');
-
-const bcrypt = require('bcrypt');
+import { Users } from '../../data/models/index.js';
+import { createAuthToken } from '../auth/jwt.js';
+import { authValidations } from '../auth/authValidations.js';
+import { isValidEmail, isStrongPassword } from '../../helpers/validations.js';
+import { securityVariablesConfig, globalVariablesConfig } from '../../config/appConfig.js';
 
 /**
  * All resolvers related to auth
  * @type {Object}
  */
-module.exports = {
+export default {
 	Query: {
 	},
 	Mutation: {

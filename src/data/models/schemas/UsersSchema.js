@@ -1,10 +1,10 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import { v4 as uuidv4 } from 'uuid';
 
-const bcrypt = require('bcrypt');
-const { v4: uuidv4 } = require('uuid');
+const Schema = mongoose.Schema;
 
 /**
  * Users schema
@@ -72,4 +72,4 @@ UsersSchema.pre('save', function (next) {
 	});
 });
 
-module.exports = UsersSchema;
+export { UsersSchema };

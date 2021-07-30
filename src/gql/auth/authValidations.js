@@ -1,13 +1,13 @@
 'use strict';
 
-const { AuthenticationError, ForbiddenError, ValidationError } = require('apollo-server-express');
-const { Users } = require('../../data/models/index');
+import { AuthenticationError, ForbiddenError, ValidationError } from 'apollo-server-express';
+import { Users } from '../../data/models/index.js';
 
 /**
  * Auth validations repository
- * @type {Object}
+ * @typedef {Object}
  */
-const authValidations = {
+export const authValidations = {
 	/**
 	 * Check if the maximum limit of users has been reached. If limit is reached, it throws an error.
 	 * @param  {Integer} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
@@ -67,6 +67,3 @@ const authValidations = {
 		return user;
 	},
 };
-
-/* Auth validations repository */
-module.exports = { authValidations };

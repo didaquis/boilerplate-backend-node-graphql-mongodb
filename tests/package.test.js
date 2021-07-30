@@ -1,4 +1,4 @@
-const jsonfile = require('jsonfile');
+import jsonfile from 'jsonfile';
 
 let packageJSONData; 
 
