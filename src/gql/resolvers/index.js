@@ -1,11 +1,9 @@
-'use strict';
+import merge from 'lodash.merge';
 
-const merge = require('lodash.merge');
+import users from './users.js';
+import auth from './auth.js';
 
-const users = require('./users');
-const auth = require('./auth');
-
-module.exports = merge(
+export const resolvers = merge(
 	users,
 	auth
 );

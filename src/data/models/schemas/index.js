@@ -1,7 +1,3 @@
-'use strict';
+import { UsersSchema } from './UsersSchema.js';
 
-const UsersSchema = require('./UsersSchema');
-
-module.exports = {
-	UsersSchema
-};
+export { UsersSchema };

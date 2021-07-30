@@ -1,13 +1,11 @@
-'use strict';
-
-const { Users } = require('../../data/models/index');
-const { authValidations } = require('../auth/authValidations');
+import { Users } from '../../data/models/index.js';
+import { authValidations } from '../auth/authValidations.js';
 
 /**
  * All resolvers related to users
- * @type {Object}
+ * @typedef {Object}
  */
-module.exports = {
+export default {
 	Query: {
 		/**
 		 * It allows to administrators users to list all users registered

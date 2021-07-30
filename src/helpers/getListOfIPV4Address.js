@@ -1,13 +1,12 @@
-'use strict';
+import os from 'os';
 
 /**
  * Get all IP address of the server
- * @param {Object|undefined} [{}] - An object.
- * @param {Boolean} [obj.skipLocalhost=false] - Determines if the localhost address is returned in the result list
- * @return {Array}                          Array of IPs
+ * @param {Object|undefined} [{}] 				- An object.
+ * @param {Boolean} [obj.skipLocalhost=false] 	- Determines if the localhost address is returned in the result list
+ * @return {Array}                          	Array of IPs
  */
-const getListOfIPV4Address = ({ skipLocalhost = false } = {}) => {
-	const os = require('os');
+export const getListOfIPV4Address = ({ skipLocalhost = false } = {}) => {
 	const ifaces = os.networkInterfaces();
 
 	let result = [];
@@ -32,5 +31,3 @@ const getListOfIPV4Address = ({ skipLocalhost = false } = {}) => {
 
 	return result;
 };
-
-module.exports = { getListOfIPV4Address };

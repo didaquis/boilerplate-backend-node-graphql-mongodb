@@ -1,12 +1,9 @@
-'use strict';
-
-
 /**
  * Check if email is valid
  * @param  {String} email
  * @return {Boolean}
  */
-const isValidEmail = (email) => {
+export const isValidEmail = (email) => {
 	if (!email) {
 		return false;
 	}
@@ -19,12 +16,10 @@ const isValidEmail = (email) => {
  * @param  {String} password
  * @return {Boolean}
  */
-const isStrongPassword = (password) => {
+export const isStrongPassword = (password) => {
 	if (!password) {
 		return false;
 	}
 	const passwordValidPattern = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!*^?+-_@#$%&]{8,}$/);
 	return passwordValidPattern.test(password);
 };
-
-module.exports = { isValidEmail, isStrongPassword };

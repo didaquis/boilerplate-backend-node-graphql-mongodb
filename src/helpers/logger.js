@@ -1,5 +1,3 @@
-'use strict';
-
 /* Home doc */
 /**
  * @file Configuration settings for logger module
@@ -12,7 +10,7 @@
  * @module logger
  */
 
-const log4js = require('log4js');
+import log4js from 'log4js';
 
 /**
  * log4js configuration data
@@ -45,8 +43,6 @@ log4js.configure({
  *          logger.error('error'); 	// Log file: application_error.log and application.log
  *          logger.fatal('fatal'); 	// Log file: application_error.log and application.log
  */
-const logger = log4js.getLogger();
+export const logger = log4js.getLogger();
 
-const endLogger = log4js.shutdown;
-
-module.exports = { logger, endLogger };
+export const endLogger = log4js.shutdown;

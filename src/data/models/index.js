@@ -1,9 +1,5 @@
-'use strict';
+import mongoose from 'mongoose';
 
-const mongoose = require('mongoose');
+import { UsersSchema } from './schemas/index.js';
 
-const { UsersSchema } = require('./schemas');
-
-module.exports = {
-	Users: mongoose.model('users', UsersSchema)
-};
+export const Users = mongoose.model('users', UsersSchema);

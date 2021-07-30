@@ -1,5 +1,3 @@
-'use strict';
-
 /* Home doc */
 /**
  * @file Environment options available for the application
@@ -17,9 +15,7 @@
  *  Environments options
  * @typedef {Object}
  */
-const ENVIRONMENT = Object.freeze({
+export const ENVIRONMENT = Object.freeze({
 	DEVELOPMENT: 'development',
 	PRODUCTION: 'production'
 });
-
-module.exports = { ENVIRONMENT };

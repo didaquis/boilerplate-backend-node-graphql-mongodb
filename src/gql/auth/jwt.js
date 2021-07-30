@@ -1,8 +1,6 @@
-'use strict';
+import jwt from 'jsonwebtoken';
 
-const jwt = require('jsonwebtoken');
-
-const { securityVariablesConfig } = require('../../config/appConfig');
+import { securityVariablesConfig } from '../../config/appConfig.js';
 
 /**
  * Create a new JSON Web Token
@@ -15,7 +13,7 @@ const { securityVariablesConfig } = require('../../config/appConfig');
  * @param {String} 		[expirationTime] 	- Time of token expiration. Default value '2h'
  * @returns	{String}						- Json Web Token
  */
-const createAuthToken = ({ email, isAdmin, isActive, uuid }, secret, expirationTime = '2h') => {
+export const createAuthToken = ({ email, isAdmin, isActive, uuid }, secret, expirationTime = '2h') => {
 	return jwt.sign({ email, isAdmin, isActive, uuid }, secret, { expiresIn: expirationTime });
 };
 
@@ -24,9 +22,7 @@ const createAuthToken = ({ email, isAdmin, isActive, uuid }, secret, expirationT
  * @param  {String} token - A token
  * @return {Object}       - User data retrieved from payload
  */
-const validateAuthToken = async (token) => {
+export const validateAuthToken = async (token) => {
 	const user = await jwt.verify(token, securityVariablesConfig.secret);
 	return user;
 };
-
-module.exports = { createAuthToken, validateAuthToken };
