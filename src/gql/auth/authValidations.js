@@ -5,7 +5,7 @@ const { Users } = require('../../data/models/index');
 
 /**
  * Auth validations repository
- * @type {Object}
+ * @typedef {Object}
  */
 const authValidations = {
 	/**
