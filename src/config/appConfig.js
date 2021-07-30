@@ -23,7 +23,7 @@ const limitOfUsersRegistered = 0; /* Set the value to 0 to not use the limit. Re
  * Environment variables configuration
  * @typedef {Object}
  */
-const enviromentVariablesConfig = Object.freeze({
+const environmentVariablesConfig = Object.freeze({
 	formatConnection: process.env.MONGO_FORMAT_CONNECTION || 'standard',
 	mongoDNSseedlist: process.env.MONGO_DNS_SEEDLIST_CONNECTION || '',
 	dbHost: process.env.MONGO_HOST || 'localhost',
@@ -53,4 +53,4 @@ const globalVariablesConfig = Object.freeze({
 });
 
 /** Variables configuration */
-module.exports = { enviromentVariablesConfig, securityVariablesConfig, globalVariablesConfig };
+module.exports = { environmentVariablesConfig, securityVariablesConfig, globalVariablesConfig };
