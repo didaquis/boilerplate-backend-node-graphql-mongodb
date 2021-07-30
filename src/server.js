@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose from 'mongoose';
 import express from 'express';
 import favicon from 'serve-favicon';

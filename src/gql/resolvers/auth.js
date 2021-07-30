@@ -1,5 +1,3 @@
-'use strict';
-
 import { UserInputError } from 'apollo-server-express';
 import bcrypt from 'bcrypt';
 
@@ -11,7 +9,7 @@ import { securityVariablesConfig, globalVariablesConfig } from '../../config/app
 
 /**
  * All resolvers related to auth
- * @type {Object}
+ * @typedef {Object}
  */
 export default {
 	Query: {

@@ -1,11 +1,9 @@
-'use strict';
-
 import { Users } from '../../data/models/index.js';
 import { authValidations } from '../auth/authValidations.js';
 
 /**
  * All resolvers related to users
- * @type {Object}
+ * @typedef {Object}
  */
 export default {
 	Query: {

@@ -1,5 +1,3 @@
-'use strict';
-
 /* Home doc */
 /**
  * @file Environment options available for the application

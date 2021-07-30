@@ -1,5 +1,3 @@
-'use strict';
-
 import jwt from 'jsonwebtoken';
 
 import { securityVariablesConfig } from '../../config/appConfig.js';

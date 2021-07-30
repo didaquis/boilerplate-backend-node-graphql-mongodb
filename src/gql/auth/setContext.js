@@ -1,5 +1,3 @@
-'use strict';
-
 import { validateAuthToken } from './jwt.js';
 import { environmentVariablesConfig } from '../../config/appConfig.js';
 import { ENVIRONMENT } from '../../config/environment.js';

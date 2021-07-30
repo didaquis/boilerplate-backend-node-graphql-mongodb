@@ -1,6 +1,3 @@
-'use strict';
-
-
 /**
  * Check if email is valid
  * @param  {String} email

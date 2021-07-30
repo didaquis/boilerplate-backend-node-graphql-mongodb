@@ -1,5 +1,3 @@
-'use strict';
-
 import merge from 'lodash.merge';
 
 import users from './users.js';

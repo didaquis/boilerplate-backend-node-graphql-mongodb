@@ -1,5 +1,3 @@
-'use strict';
-
 import { AuthenticationError, ForbiddenError, ValidationError } from 'apollo-server-express';
 import { Users } from '../../data/models/index.js';
 

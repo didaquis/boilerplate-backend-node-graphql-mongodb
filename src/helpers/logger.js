@@ -1,5 +1,3 @@
-'use strict';
-
 /* Home doc */
 /**
  * @file Configuration settings for logger module
