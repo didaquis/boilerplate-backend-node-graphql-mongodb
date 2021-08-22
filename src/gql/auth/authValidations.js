@@ -8,8 +8,8 @@ import { Users } from '../../data/models/index.js';
 export const authValidations = {
 	/**
 	 * Check if the maximum limit of users has been reached. If limit is reached, it throws an error.
-	 * @param  {Integer} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
-	 * @param  {Integer} limitOfUsers 						- Represents the maximum number of users allowed in the service. Zero represents no limit
+	 * @param  {number} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
+	 * @param  {number} limitOfUsers 						- Represents the maximum number of users allowed in the service. Zero represents no limit
 	 */
 	ensureLimitOfUsersIsNotReached: (numberOfCurrentlyUsersRegistered, limitOfUsers) => {
 		if (limitOfUsers === 0) {
