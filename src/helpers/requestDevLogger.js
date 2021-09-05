@@ -3,6 +3,16 @@ import { logger } from './logger.js';
 export const requestDevLogger = {
 	// Fires whenever a GraphQL request is received from a client
 	requestDidStart (requestContext) {
+
+		/* List of regex to filter queries from logger */
+		const excludeThisQueryFromLogger = [/query IntrospectionQuery/];
+
+		const avoidLog = excludeThisQueryFromLogger.some(excludedQuery => requestContext.request.query.match(excludedQuery));
+
+		if (avoidLog) {
+			return;
+		}
+
 		logger.debug('Query:');
 		logger.debug(`\n${requestContext.request.query}`);
 

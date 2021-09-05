@@ -4,6 +4,7 @@ import favicon from 'serve-favicon';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+import { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-express';
 
 import { ENVIRONMENT } from './config/environment.js';
@@ -46,7 +47,7 @@ db.once('open', () => {
 	initApplication();
 });
 
-const initApplication = () => {
+const initApplication = async () => {
 	const app = express();
 	app.use(cors({ credentials: true }));
 	const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -58,9 +59,10 @@ const initApplication = () => {
 		resolvers,
 		context: setContext,
 		introspection: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? false : true, // Set to "true" only in development mode
-		playground: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? false : true, // Set to "true" only in development mode
-		plugins: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? [] : [requestDevLogger], // Log all querys and their responses (do not use in production)
+		plugins: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? [ApolloServerPluginLandingPageDisabled()] : [requestDevLogger, ApolloServerPluginLandingPageGraphQLPlayground()], // Log all querys and their responses. Show playground (do not use in production)
 	});
+
+	await server.start();
 
 	server.applyMiddleware({app});
 
