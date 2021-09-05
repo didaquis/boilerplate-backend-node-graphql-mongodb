@@ -1,5 +1,5 @@
 import { AuthenticationError, ForbiddenError, ValidationError } from 'apollo-server-express';
-import { Users } from '../../data/models/index.js';
+import models from '../../data/models/index.js';
 
 /**
  * Auth validations repository
@@ -57,7 +57,7 @@ export const authValidations = {
 		}
 	
 		const uuidOfUser = context.user.uuid || null;
-		const user = await Users.findOne({ uuid: uuidOfUser });
+		const user = await models.Users.findOne({ uuid: uuidOfUser });
 		if (!user) {
 			throw new AuthenticationError('You must be logged in to perform this action');
 		}

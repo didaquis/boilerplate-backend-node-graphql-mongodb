@@ -1,4 +1,3 @@
-import { Users } from '../../data/models/index.js';
 import { authValidations } from '../auth/authValidations.js';
 
 /**
@@ -15,7 +14,7 @@ export default {
 
 			authValidations.ensureThatUserIsAdministrator(context);
 
-			const users = await Users.find({});
+			const users = await context.di.model.Users.find({});
 			return users;
 		}
 	},
