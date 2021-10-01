@@ -12,3 +12,8 @@ type User {
 	registrationDate: String
 	lastLogin: String
 }
+
+""" Delete Result """
+type DeleteResult {
+	deletedCount: Int!
+}

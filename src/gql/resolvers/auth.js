@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import { createAuthToken } from '../auth/jwt.js';
 import { authValidations } from '../auth/authValidations.js';
 import { isValidEmail, isStrongPassword } from '../../helpers/validations.js';
+import { logger } from '../../helpers/logger.js';
 import { securityVariablesConfig, globalVariablesConfig } from '../../config/appConfig.js';
 
 /**
@@ -73,6 +74,21 @@ export default {
 			return {
 				token: createAuthToken({ email: user.email, isAdmin: user.isAdmin, isActive: user.isActive, uuid: user.uuid }, securityVariablesConfig.secret, securityVariablesConfig.timeExpiration)
 			};
+		},
+		/**
+		 * It allows to user to delete their account permanently (this action does not delete the records associated with the user, it only deletes their user account)
+		 */
+		deleteMyUserAccount:  async (parent, args, context) => {
+			authValidations.ensureThatUserIsLogged(context);
+
+			const user = await authValidations.getUser(context);
+
+			try {
+				return await context.di.model.Users.deleteOne({ uuid: user.uuid});
+			} catch (error) {
+				logger.error(error.message);
+				return null;
+			}
 		}
 	}
 };
