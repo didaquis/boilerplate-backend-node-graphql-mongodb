@@ -64,7 +64,7 @@ const initApplication = async () => {
 
 	await server.start();
 
-	server.applyMiddleware({app});
+	server.applyMiddleware({ app });
 
 	app.use((req, res) => {
 		res.status(404).send('404'); // eslint-disable-line no-magic-numbers
