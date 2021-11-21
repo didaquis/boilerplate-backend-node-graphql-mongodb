@@ -8,8 +8,8 @@ import models from '../../data/models/index.js';
 export const authValidations = {
 	/**
 	 * Check if the maximum limit of users has been reached. If limit is reached, it throws an error.
-	 * @param  {number} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
-	 * @param  {number} limitOfUsers 						- Represents the maximum number of users allowed in the service. Zero represents no limit
+	 * @param {number} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
+	 * @param {number} limitOfUsers 						- Represents the maximum number of users allowed in the service. Zero represents no limit
 	 */
 	ensureLimitOfUsersIsNotReached: (numberOfCurrentlyUsersRegistered, limitOfUsers) => {
 		if (limitOfUsers === 0) {
@@ -24,7 +24,7 @@ export const authValidations = {
 	/**
 	 * Check if in Apollo Server context contains a logged user. If user is not in context, it throws an error
 	 * @param {Object} context 			- The context object of Apollo Server
-	 * @param  {Object} [context.user]  - The context object data: user data
+	 * @param {Object} [context.user]  	- The context object data: user data
 	 */
 	ensureThatUserIsLogged: (context) => {
 		if (!context.user) {
@@ -35,8 +35,8 @@ export const authValidations = {
 	/**
 	 * Check if in Apollo Server context contains an user and is an administrator. If user is not in context or user is not an administrator it throws an error
 	 * @param {Object} context 					- The context object of Apollo Server
-	 * @param  {Object} [context.user]  		- The context object data: user data
-	 * @param  {Boolean} [context.user.isAdmin] - The context object data: user data role information
+	 * @param {Object} [context.user]  			- The context object data: user data
+	 * @param {Boolean} [context.user.isAdmin] 	- The context object data: user data role information
 	 */
 	ensureThatUserIsAdministrator: (context) => {
 		if (!context.user || !context.user.isAdmin) {
@@ -47,8 +47,8 @@ export const authValidations = {
 	/**
 	 * Uses the information in the Apollo Server context to retrieve the user's data from the database. If user does not exist, it throws an error.
 	 * @async
-	 * @param {Object} context 					- The context object of Apollo Server
-	 * @param  {Object} [context.user]  		- The context object data: user data
+	 * @param {Object} context 				- The context object of Apollo Server
+	 * @param {Object} [context.user]  		- The context object data: user data
 	 * @returns {User}
 	 */
 	getUser: async (context) => {
@@ -56,8 +56,8 @@ export const authValidations = {
 			return null;
 		}
 	
-		const uuidOfUser = context.user.uuid || null;
-		const user = await models.Users.findOne({ uuid: uuidOfUser });
+		const userUUID = context.user.uuid || null;
+		const user = await models.Users.findOne({ uuid: userUUID });
 		if (!user) {
 			throw new AuthenticationError('You must be logged in to perform this action');
 		}
