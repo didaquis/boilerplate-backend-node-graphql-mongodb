@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 
 const Schema = mongoose.Schema;
 
@@ -35,7 +35,7 @@ const UsersSchema = new Schema({
 		type: String,
 		required: true,
 		unique: true,
-		default: uuidv4
+		default: randomUUID
 	},
 	registrationDate: {
 		type: Date,

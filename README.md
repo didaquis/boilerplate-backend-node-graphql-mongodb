@@ -21,7 +21,7 @@ Technologies used are: Node.js + GraphQL + Apollo + Express + Mongoose + MongoDB
 
 ### 📝 Backend Requirements
 * MongoDB 4.4 or higher
-* Node.js 14 or higher
+* Node.js 14.17 or higher
 
 ### 📚 How to run the application?
 * Use the command: `npm install`. If you are deploying the app in production, it's better to use this command: `npm install --production`
