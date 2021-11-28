@@ -66,5 +66,3 @@ It would be great to receive your help. ♥️
 You can collaborate in multiple ways, of course. Let me give you some ideas:
 * Help me with this documentation. If you think something it's not clear, open an issue and talk to me!
 * Share this project, mark it as a favorite (⭐️) or make some suggestions
-* Develop other frontends that can connect to this backend
-
