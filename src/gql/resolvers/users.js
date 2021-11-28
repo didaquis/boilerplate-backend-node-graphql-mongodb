@@ -14,8 +14,7 @@ export default {
 
 			authValidations.ensureThatUserIsAdministrator(context);
 
-			const users = await context.di.model.Users.find({});
-			return users;
+			return await context.di.model.Users.find({});
 		}
 	},
 	Mutation: {

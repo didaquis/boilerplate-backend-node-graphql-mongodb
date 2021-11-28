@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt';
 import { createAuthToken } from '../auth/jwt.js';
 import { authValidations } from '../auth/authValidations.js';
 import { isValidEmail, isStrongPassword } from '../../helpers/validations.js';
-import { logger } from '../../helpers/logger.js';
 import { securityVariablesConfig, globalVariablesConfig } from '../../config/appConfig.js';
 
 /**
@@ -83,12 +82,7 @@ export default {
 
 			const user = await authValidations.getUser(context);
 
-			try {
-				return await context.di.model.Users.deleteOne({ uuid: user.uuid });
-			} catch (error) {
-				logger.error(error.message);
-				return null;
-			}
+			return await context.di.model.Users.deleteOne({ uuid: user.uuid });
 		}
 	}
 };

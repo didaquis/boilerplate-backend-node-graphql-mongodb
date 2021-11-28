@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-express';
+import { UserInputError } from 'apollo-server-errors';
 
 import { ENVIRONMENT } from './config/environment.js';
 import { environmentVariablesConfig } from './config/appConfig.js';
@@ -60,6 +61,13 @@ const initApplication = async () => {
 		context: setContext,
 		introspection: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? false : true, // Set to "true" only in development mode
 		plugins: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? [ApolloServerPluginLandingPageDisabled()] : [requestDevLogger, ApolloServerPluginLandingPageGraphQLPlayground()], // Log all querys and their responses. Show playground (do not use in production)
+		formatError (error) {
+			if ( !(error.originalError instanceof UserInputError) ) {
+				logger.error(error.message);
+			}
+
+			return error;
+		},
 	});
 
 	await server.start();
