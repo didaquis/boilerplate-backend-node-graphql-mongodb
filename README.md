@@ -8,7 +8,7 @@ This repository is for the backend and is designed to work with another boilerpl
 If you prefer it, you can use one of these boilerplates without using the other! Feel free to explore any ideas like developing your own backend in PHP or your frontend in Angular, for example.
 
 ### 🎁 What is included on the backend boilerplate?
-Technologies used are: Node.js + GraphQL + Apollo + Express + Mongoose + MongoDB.
+Technologies used are: Node.js + GraphQL + Apollo Server + Express + Mongoose.
 
 **✨ These are some of the highlights:** 
 
@@ -20,7 +20,7 @@ Technologies used are: Node.js + GraphQL + Apollo + Express + Mongoose + MongoDB
 ✅ The Auth validations are made with JWT  
 
 ### 📝 Backend Requirements
-* MongoDB 4.4 or higher
+* MongoDB 5.0 or higher
 * Node.js 14.17 or higher
 
 ### 📚 How to run the application?
