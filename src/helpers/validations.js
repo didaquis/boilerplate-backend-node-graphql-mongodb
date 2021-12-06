@@ -1,7 +1,7 @@
 /**
  * Check if email is valid
- * @param  {String} email
- * @return {Boolean}
+ * @param {string} email
+ * @returns {boolean}
  */
 export const isValidEmail = (email) => {
 	if (!email) {
@@ -13,8 +13,8 @@ export const isValidEmail = (email) => {
 
 /**
  * Check if password is secure. Rules: At least 8 characters. It must contain numbers, lowercase letters and uppercase letters. The spaces are not allowed. Only english characters are allowed. This characters are not allowed: { } ( ) | ~ € ¿ ¬
- * @param  {String} password
- * @return {Boolean}
+ * @param {string} password
+ * @returns {boolean}
  */
 export const isStrongPassword = (password) => {
 	if (!password) {
