@@ -87,7 +87,7 @@ const initApplication = async () => {
 		});
 	});
 
-	// Managing application shutdown
+	// Manage application shutdown
 	process.on('SIGINT', () => {
 		logger.info('Stopping application...');
 		endLogger();
