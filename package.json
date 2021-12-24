@@ -13,7 +13,8 @@
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watchAll",
     "lint": "eslint --ext .js .",
-    "clean": "rimraf logs"
+    "clean": "rimraf logs",
+    "prepare": "husky install"
   },
   "keywords": [
     "boilerplate",
@@ -28,7 +29,7 @@
   "devDependencies": {
     "eslint": "7.32.0",
     "eslint-plugin-no-lenght": "1.0.2-0",
-    "husky": "4.3.8",
+    "husky": "7.0.4",
     "jest": "27.3.1",
     "jsonfile": "6.1.0",
     "nodemon": "2.0.15",
@@ -47,10 +48,5 @@
     "log4js": "6.3.0",
     "mongoose": "6.0.13",
     "serve-favicon": "2.5.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run test"
-    }
   }
 }
