@@ -43,6 +43,7 @@
         "no-multi-spaces": "error",
         "no-magic-numbers": ["warn", { "ignore": [0], "ignoreArrayIndexes": true }],
         "valid-typeof": "error",
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        "curly": "error"
     }
 }
