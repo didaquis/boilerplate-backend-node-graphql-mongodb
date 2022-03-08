@@ -82,7 +82,7 @@ export default {
 
 			const user = await authValidations.getUser(context);
 
-			return await context.di.model.Users.deleteOne({ uuid: user.uuid });
+			return context.di.model.Users.deleteOne({ uuid: user.uuid });
 		}
 	}
 };

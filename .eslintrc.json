@@ -44,6 +44,7 @@
         "no-magic-numbers": ["warn", { "ignore": [0], "ignoreArrayIndexes": true }],
         "valid-typeof": "error",
         "object-curly-spacing": ["error", "always"],
-        "curly": "error"
+        "curly": "error",
+        "no-return-await": "error"
     }
 }
