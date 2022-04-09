@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "1.2.15",
+  "version": "1.2.17",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
@@ -36,13 +36,14 @@
     "rimraf": "3.0.2"
   },
   "dependencies": {
+    "@graphql-tools/load-files": "6.5.3",
+    "@graphql-tools/merge": "8.2.7",
     "apollo-server-express": "3.5.0",
     "bcrypt": "5.0.1",
     "cors": "2.8.5",
     "dotenv": "10.0.0",
     "express": "4.17.2",
     "graphql": "15.6.0",
-    "graphql-import": "1.0.2",
     "helmet": "5.0.2",
     "jsonwebtoken": "8.5.1",
     "lodash.merge": "4.6.2",

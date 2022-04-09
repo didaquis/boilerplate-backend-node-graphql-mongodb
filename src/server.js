@@ -14,7 +14,7 @@ import { environmentVariablesConfig } from './config/appConfig.js';
 import { logger, endLogger } from './helpers/logger.js';
 import { requestDevLogger } from './helpers/requestDevLogger.js';
 import { setContext } from './gql/auth/setContext.js';
-import { typeDefs } from './gql/schemas/index.js';
+import { initTypeDefinition } from './gql/types/index.js';
 import { resolvers } from './gql/resolvers/index.js';
 import { getListOfIPV4Address } from './helpers/getListOfIPV4Address.js';
 import routesManager from './routes/routesManager.js';
@@ -61,6 +61,8 @@ const initApplication = async () => {
 	const __dirname = path.dirname(fileURLToPath(import.meta.url));
 	app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 	app.use('', routesManager);
+
+	const typeDefs = await initTypeDefinition();
 
 	const server = new ApolloServer({ 
 		typeDefs,
