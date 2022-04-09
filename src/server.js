@@ -51,7 +51,12 @@ db.once('open', () => {
 
 const initApplication = async () => {
 	const app = express();
-	app.use(helmet());
+	if (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) {
+		app.use(helmet());
+	} else {
+		// Allow GraphQL Playground on development environments
+		app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }));
+	}
 	app.use(cors({ credentials: true }));
 	const __dirname = path.dirname(fileURLToPath(import.meta.url));
 	app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
