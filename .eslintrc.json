@@ -17,7 +17,7 @@
         "indent": [
             "error",
             "tab",
-            {"SwitchCase": 1}
+            { "SwitchCase": 1 }
         ],
         "linebreak-style": [
             "error",
@@ -35,7 +35,7 @@
         "no-alert": "warn",
         "no-unused-vars": "warn",
         "keyword-spacing": ["error", { "before": true, "after": true }],
-        "space-infix-ops": ["error", {"int32Hint": false}],
+        "space-infix-ops": ["error", { "int32Hint": false }],
         "comma-spacing": ["error"],
         "arrow-spacing": ["error"],
         "semi-spacing": ["error"],
