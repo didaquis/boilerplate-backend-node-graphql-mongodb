@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import express from 'express';
+import helmet from 'helmet';
 import favicon from 'serve-favicon';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -50,6 +51,7 @@ db.once('open', () => {
 
 const initApplication = async () => {
 	const app = express();
+	app.use(helmet());
 	app.use(cors({ credentials: true }));
 	const __dirname = path.dirname(fileURLToPath(import.meta.url));
 	app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

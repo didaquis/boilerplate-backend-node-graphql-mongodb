@@ -43,6 +43,7 @@
     "express": "4.17.2",
     "graphql": "15.6.0",
     "graphql-import": "1.0.2",
+    "helmet": "5.0.2",
     "jsonwebtoken": "8.5.1",
     "lodash.merge": "4.6.2",
     "log4js": "6.4.0",
