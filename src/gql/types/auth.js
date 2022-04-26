@@ -5,7 +5,7 @@ export default /* GraphQL */ gql`
 		token: String
 	}
 
-  	type Mutation {
+	type Mutation {
 		""" It allows users to register """
 		registerUser(email: String!, password: String!): Token
 
