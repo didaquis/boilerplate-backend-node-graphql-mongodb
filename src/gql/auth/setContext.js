@@ -1,5 +1,6 @@
-import { validateAuthToken } from './jwt.js';
+import { validateAuthToken, createAuthToken } from './jwt.js';
 import { environmentVariablesConfig } from '../../config/appConfig.js';
+import { authValidations } from '../auth/authValidations.js';
 import { ENVIRONMENT } from '../../config/environment.js';
 import { logger } from '../../helpers/logger.js';
 import models from '../../data/models/index.js';
@@ -12,6 +13,12 @@ export const setContext = async ({ req }) => {
 		di: {
 			model: {
 				...models
+			},
+			authValidation: {
+				...authValidations
+			},
+			jwt: {
+				createAuthToken: createAuthToken
 			}
 		}
 	};

@@ -1,5 +1,6 @@
 import { AuthenticationError, ForbiddenError, ValidationError } from 'apollo-server-express';
 import models from '../../data/models/index.js';
+import { globalVariablesConfig } from '../../config/appConfig.js';
 
 /**
  * Auth validations repository
@@ -9,14 +10,14 @@ export const authValidations = {
 	/**
 	 * Check if the maximum limit of users has been reached. If limit is reached, it throws an error.
 	 * @param {number} numberOfCurrentlyUsersRegistered 	- The number of users currently registered in the service
-	 * @param {number} limitOfUsers 						- Represents the maximum number of users allowed in the service. Zero represents no limit
 	 */
-	ensureLimitOfUsersIsNotReached: (numberOfCurrentlyUsersRegistered, limitOfUsers) => {
-		if (limitOfUsers === 0) {
+	ensureLimitOfUsersIsNotReached: (numberOfCurrentlyUsersRegistered) => {
+		const usersLimit = globalVariablesConfig.limitOfUsersRegistered;
+		if (usersLimit === 0) {
 			return;
 		}
 
-		if (numberOfCurrentlyUsersRegistered >= limitOfUsers) {
+		if (numberOfCurrentlyUsersRegistered >= usersLimit) {
 			throw new ValidationError('The maximum number of users allowed has been reached. You must contact the administrator of the service in order to register');
 		}
 	},
