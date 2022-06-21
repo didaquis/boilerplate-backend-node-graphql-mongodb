@@ -52,7 +52,7 @@ Do not worry, I have written down some information for you. Here you have a guid
 
 **❗️How can I configure a user to be an administrator?** 
 
-To make a user an administrator you must access to the database and search its registry. You will see a Boolean who allows the user to have the role of the administrator. Set it to 'true' and in his next authentication that user will have administrator permissions.
+To make a user an administrator you must access to the database and search its registry. You will see a Boolean who allows the user to have the role of the administrator. Set it to 'true' and in their next authentication that user will have administrator permissions.
 
 ### 💻 Tricks for development
 * Run app in dev mode: `npm run dev`
