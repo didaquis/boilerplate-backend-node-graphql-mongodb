@@ -3,7 +3,7 @@ import { environmentVariablesConfig } from '../../config/appConfig.js';
 import { authValidations } from '../auth/authValidations.js';
 import { ENVIRONMENT } from '../../config/environment.js';
 import { logger } from '../../helpers/logger.js';
-import models from '../../data/models/index.js';
+import { models } from '../../data/models/index.js';
 
 /**
  * Context function from Apollo Server

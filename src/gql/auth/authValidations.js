@@ -1,5 +1,5 @@
 import { AuthenticationError, ForbiddenError, ValidationError } from 'apollo-server-express';
-import models from '../../data/models/index.js';
+import { models } from '../../data/models/index.js';
 import { globalVariablesConfig } from '../../config/appConfig.js';
 
 /**
