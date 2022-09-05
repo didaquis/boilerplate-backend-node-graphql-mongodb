@@ -4,7 +4,7 @@
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
-    "node": "^14.19"
+    "node": "^16.17"
   },
   "type": "module",
   "scripts": {
