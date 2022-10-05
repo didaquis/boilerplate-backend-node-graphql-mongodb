@@ -36,7 +36,7 @@ db.on('error', (err) => {
 });
 
 db.once('open', () => {
-	if (environmentVariablesConfig.enviroment !== ENVIRONMENT.DEVELOPMENT) {
+	if (environmentVariablesConfig.environment !== ENVIRONMENT.DEVELOPMENT) {
 		logger.info(`Connected with MongoDB service (${ENVIRONMENT.PRODUCTION} mode)`);
 	} else {
 		if (environmentVariablesConfig.formatConnection === 'DNSseedlist' && environmentVariablesConfig.mongoDNSseedlist !== '') {
@@ -51,7 +51,7 @@ db.once('open', () => {
 
 const initApplication = async () => {
 	const app = express();
-	if (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) {
+	if (environmentVariablesConfig.environment === ENVIRONMENT.PRODUCTION) {
 		app.use(helmet());
 	} else {
 		// Allow GraphQL Playground on development environments
@@ -68,8 +68,8 @@ const initApplication = async () => {
 		typeDefs,
 		resolvers,
 		context: setContext,
-		introspection: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? false : true, // Set to "true" only in development mode
-		plugins: (environmentVariablesConfig.enviroment === ENVIRONMENT.PRODUCTION) ? [ApolloServerPluginLandingPageDisabled()] : [requestDevLogger, ApolloServerPluginLandingPageGraphQLPlayground()], // Log all querys and their responses. Show playground (do not use in production)
+		introspection: (environmentVariablesConfig.environment === ENVIRONMENT.PRODUCTION) ? false : true, // Set to "true" only in development mode
+		plugins: (environmentVariablesConfig.environment === ENVIRONMENT.PRODUCTION) ? [ApolloServerPluginLandingPageDisabled()] : [requestDevLogger, ApolloServerPluginLandingPageGraphQLPlayground()], // Log all querys and their responses. Show playground (do not use in production)
 		formatError (error) {
 			if ( !(error.originalError instanceof UserInputError) ) {
 				logger.error(error.message);
@@ -90,7 +90,7 @@ const initApplication = async () => {
 	app.listen(environmentVariablesConfig.port, () => {
 		getListOfIPV4Address().forEach(ip => {
 			logger.info(`Application running on: http://${ip}:${environmentVariablesConfig.port}`);
-			if (environmentVariablesConfig.enviroment !== ENVIRONMENT.PRODUCTION) {
+			if (environmentVariablesConfig.environment !== ENVIRONMENT.PRODUCTION) {
 				logger.info(`GraphQL Playground running on: http://${ip}:${environmentVariablesConfig.port}${server.graphqlPath}`);
 			}
 		});

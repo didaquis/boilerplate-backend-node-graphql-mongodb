@@ -34,7 +34,7 @@ export const setContext = async ({ req }) => {
 			const user = await validateAuthToken(token);
 			context.user = user; // Add to Apollo Server context the user who is doing the request if auth token is provided and it's a valid token
 		} catch (error) {
-			if (environmentVariablesConfig.enviroment !== ENVIRONMENT.PRODUCTION) {
+			if (environmentVariablesConfig.environment !== ENVIRONMENT.PRODUCTION) {
 				logger.debug(error.message);
 			}
 		}

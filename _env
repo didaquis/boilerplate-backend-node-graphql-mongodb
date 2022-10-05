@@ -1,7 +1,7 @@
 # Server port configuration:
 PORT=4000
 
-# Enviroment (choose between: "production" or "development"):
+# Environment (choose between: "production" or "development"):
 ENVIROMENT=development
 
 # You can set a limit of users allowed to register. Set the value to 0 to not use the limit

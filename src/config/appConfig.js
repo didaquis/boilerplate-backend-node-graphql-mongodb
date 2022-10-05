@@ -17,7 +17,7 @@ import { ENVIRONMENT } from './environment.js';
  */
 
 const serverPortByDefault = 4000;
-const limitOfUsersRegistered = 0; /* Set the value to 0 to not use the limit. Remember put the same value on the enviroment variables */
+const limitOfUsersRegistered = 0; /* Set the value to 0 to not use the limit. Remember put the same value on the environment variables */
 
 /**
  * Environment variables configuration
@@ -31,7 +31,7 @@ export const environmentVariablesConfig = Object.freeze({
 	database: process.env.MONGO_DB || 'boilerplate_database',
 	mongoUser: process.env.MONGO_USER || '',
 	mongoPass: process.env.MONGO_PASS || '',
-	enviroment: (process.env.ENVIROMENT === ENVIRONMENT.DEVELOPMENT) ? ENVIRONMENT.DEVELOPMENT : ENVIRONMENT.PRODUCTION,
+	environment: (process.env.ENVIROMENT === ENVIRONMENT.DEVELOPMENT) ? ENVIRONMENT.DEVELOPMENT : ENVIRONMENT.PRODUCTION,
 	port: Number(process.env.PORT) || serverPortByDefault
 });
 
