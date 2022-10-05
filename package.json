@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-backend-node-graphql-mongodb",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "boilerplate-backend-node-graphql-mongodb",
   "main": "src/server.js",
   "engines": {
@@ -30,7 +30,7 @@
     "eslint": "8.24.0",
     "eslint-plugin-no-lenght": "1.0.2-0",
     "husky": "7.0.4",
-    "jest": "27.5.1",
+    "jest": "29.1.2",
     "jsonfile": "6.1.0",
     "nodemon": "2.0.20",
     "rimraf": "3.0.2"
