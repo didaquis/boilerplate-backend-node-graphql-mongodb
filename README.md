@@ -38,7 +38,7 @@ Do not worry, I have written down some information for you. Here you have a guid
 | Key | Description |
 |-----|-------------|
 | PORT | The port for running the backend |
-| ENVIROMENT | The mode of execution of Node.js. Choose between: production or development |
+| ENVIRONMENT | The mode of execution of Node.js. Choose between: production or development |
 | LIMIT_USERS_REGISTERED | Maximum number of users allowed to register. Set the value to 0 to not use the limit |
 | MONGO_FORMAT_CONNECTION | The format of connection with MongoDB service. Choose between: standard or DNSseedlist |
 | MONGO_HOST | Set this value only if you are using the standard connection format. Host of MongoDB service |
