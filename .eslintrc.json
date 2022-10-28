@@ -10,10 +10,10 @@
         "sourceType": "module"
     },
     "plugins": [
-        "no-lenght"
+        "@didaquis/no-lenght"
     ],
     "rules": {
-        "no-lenght/no-lenght": "error",
+        "@didaquis/no-lenght/no-lenght": "error",
         "indent": [
             "error",
             "tab",

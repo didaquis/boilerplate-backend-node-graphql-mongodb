@@ -27,8 +27,8 @@
   "author": "Dídac García (https://didaquis.github.io/)",
   "license": "MIT",
   "devDependencies": {
+    "@didaquis/eslint-plugin-no-lenght": "1.1.2",
     "eslint": "8.26.0",
-    "eslint-plugin-no-lenght": "1.0.2-0",
     "husky": "8.0.1",
     "jest": "29.2.2",
     "jsonfile": "6.1.0",
