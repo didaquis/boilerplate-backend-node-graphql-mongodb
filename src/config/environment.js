@@ -12,8 +12,11 @@
 
 
 /**
- *  Environments options
- * @typedef {Object}
+ * Constant object representing the application environment
+ * @readonly
+ * @enum {string}
+ * @property {string} DEVELOPMENT - Development environment
+ * @property {string} PRODUCTION - Production environment
  */
 export const ENVIRONMENT = Object.freeze({
 	DEVELOPMENT: 'development',
