@@ -20,6 +20,8 @@ import { getListOfIPV4Address } from './helpers/getListOfIPV4Address.js';
 import routesManager from './routes/routesManager.js';
 
 
+mongoose.set('strictQuery', true);
+
 if (environmentVariablesConfig.formatConnection === 'DNSseedlist' && environmentVariablesConfig.mongoDNSseedlist !== '') {
 	mongoose.connect(environmentVariablesConfig.mongoDNSseedlist);
 } else {
