@@ -11,7 +11,7 @@ LIMIT_USERS_REGISTERED=0
 MONGO_FORMAT_CONNECTION=DNSseedlist
 
 # MongoDB: Standard Connection String Format
-MONGO_HOST=localhost
+MONGO_HOST=127.0.0.1
 MONGO_PORT=27017
 MONGO_DB=boilerplate_database
 MONGO_USER=
