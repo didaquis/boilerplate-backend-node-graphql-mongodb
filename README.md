@@ -20,7 +20,7 @@ Technologies used are: Node.js + GraphQL + Apollo Server + Express + Mongoose.
 ✅ The Auth validations are made with JWT  
 
 ### 📝 Backend Requirements
-* MongoDB 6.0 or higher
+* MongoDB 7.0 or higher
 * Node.js 18.15 or higher
 
 ### 📚 How to run the application?
